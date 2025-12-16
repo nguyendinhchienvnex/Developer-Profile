@@ -4,7 +4,7 @@
 
 ### 🔗 Link website
 
-https://nguyendinhchienvnex.github.io/github-portfolio/
+https://nguyendinhchienvnex.github.io/Developer-Profile/
 
 ### Nội dung chính
 
