@@ -1,0 +1,15 @@
+title: "Nguyen Dinh Chien"
+description: "Sinh vien Khoa Cong Nghe Phan Mem - Hoc Vien Mat Ma HCM"
+author: "Nguyen Dinh Chien"
+
+# VI EM DANG DUNG PROJECT REPO: github-portfolio
+url: "https://nguyendinhchienvnex.github.io"
+baseurl: "/Developer-Profile"
+
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+
+timezone: Asia/Ho_Chi_Minh
+markdown: kramdown
