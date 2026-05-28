@@ -27,7 +27,7 @@ title: "Home"
 </div>
 
 <img
-  src="{{ site.baseurl }}/assets/images/hero-ftu.png"
+  src="{{ site.baseurl }}/assets/images/hero-ftu.jpg"
   alt="Nguyễn Đình Chiến"
   class="img-fluid rounded-4 shadow-sm mb-4"
 />
