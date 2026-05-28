@@ -51,7 +51,7 @@ title: "Home"
 </ul>
 
 <img
-  src="{{ site.baseurl }}/assets/images/presentation.png"
+  src="{{ site.baseurl }}/assets/images/presentation.jpg"
   alt="Học tập và làm dự án"
   class="img-fluid rounded-4 shadow-sm my-3"
 />
