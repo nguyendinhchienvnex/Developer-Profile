@@ -34,7 +34,7 @@ title: "CV"
 
     <ul class="list-unstyled text-muted-soft mb-2" style="line-height:1.6;">
       <li>📍 TP. Hồ Chí Minh, Việt Nam</li>
-      <li>🎓 CT7 (2004) · Chuyên ngành: Công nghệ phần mềm</li>
+      <li>🎓 CT7 · Chuyên ngành: Công nghệ phần mềm</li>
       <li>📧 Email:
         <a
           href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyendinhchienvnex@gmail.com"
