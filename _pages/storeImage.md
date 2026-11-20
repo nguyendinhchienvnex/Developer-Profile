@@ -65,14 +65,19 @@ permalink: /storeImage/
     transform: scale(1.05);
   }
 
-  /* Lightbox phóng to ảnh */
+  /* Lightbox phủ đen mờ toàn màn hình */
   .lightbox-overlay {
     display: none;
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     inset: 0;
-    z-index: 9999;
-    background: rgba(2, 6, 23, 0.94);
-    backdrop-filter: blur(8px);
+    z-index: 99999;
+    background: rgba(2, 6, 23, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
@@ -86,17 +91,19 @@ permalink: /storeImage/
     max-width: 90vw;
     max-height: 85vh;
     border-radius: 0.75rem;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
     object-fit: contain;
+    z-index: 100000;
   }
 
   .lightbox-close,
   .lightbox-prev,
   .lightbox-next {
     position: fixed;
-    background: rgba(15, 23, 42, 0.85);
+    z-index: 100001;
+    background: rgba(15, 23, 42, 0.9);
     color: #e0f7fa;
-    border: 1px solid rgba(56, 189, 248, 0.4);
+    border: 1px solid rgba(56, 189, 248, 0.45);
     border-radius: 999px;
     width: 44px;
     height: 44px;
@@ -111,7 +118,7 @@ permalink: /storeImage/
   .lightbox-close:hover,
   .lightbox-prev:hover,
   .lightbox-next:hover {
-    background: rgba(56, 189, 248, 0.25);
+    background: rgba(56, 189, 248, 0.3);
   }
 
   .lightbox-close { top: 20px; right: 24px; }
@@ -120,15 +127,16 @@ permalink: /storeImage/
 
   .lightbox-counter {
     position: fixed;
+    z-index: 100001;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: #9ca3af;
+    color: #e0f7fa;
     font-size: 0.9rem;
-    background: rgba(15, 23, 42, 0.85);
-    padding: 0.3rem 0.9rem;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 0.35rem 1rem;
     border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(148, 163, 184, 0.25);
   }
 </style>
 
@@ -185,6 +193,12 @@ permalink: /storeImage/
   let currentIndex = 0;
 
   document.addEventListener("DOMContentLoaded", function () {
+    // Đưa khung Lightbox ra ngoài cùng (vào thẳng <body>) để che phủ cả Navbar và cột ABOUT ME
+    const lightboxEl = document.getElementById("lightbox");
+    if (lightboxEl) {
+      document.body.appendChild(lightboxEl);
+    }
+
     const params = new URLSearchParams(window.location.search);
     const albumId = params.get("album");
     const sections = document.querySelectorAll(".album-container");
@@ -197,7 +211,6 @@ permalink: /storeImage/
       }
     });
 
-    // Nếu truy cập trực tiếp /storeImage mà không có ?album=..., hiển thị tất cả album
     if (!matched) {
       sections.forEach((sec) => (sec.style.display = "block"));
     }
@@ -209,6 +222,7 @@ permalink: /storeImage/
     currentIndex = currentPhotos.indexOf(el.querySelector("img").src);
     updateLightbox();
     document.getElementById("lightbox").classList.add("active");
+    document.body.style.overflow = "hidden"; // Khóa cuộn trang nền phía sau
   }
 
   function updateLightbox() {
@@ -224,6 +238,7 @@ permalink: /storeImage/
 
   function closeLightbox() {
     document.getElementById("lightbox").classList.remove("active");
+    document.body.style.overflow = ""; // Mở lại cuộn trang
   }
 
   function closeLightboxOnBg(e) {
