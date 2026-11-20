@@ -1,10 +1,10 @@
-- id: tot-nghiep
+- id: anh_tot_nghiep
   title: "Lễ Bế Giảng"
   date: "2026"
   cover: "0.jpg"
   description: "Khoảnh khắc đánh dấu chặng đường đại học khép lại và mở ra hành trình mới."
 
-- id: dinh-doc-lap
+- id: dinh_doc_lap
   title: "Chuyến đi Dinh Doc Lap"
   date: "2026"
   cover: "hero-ftu.jpg"
