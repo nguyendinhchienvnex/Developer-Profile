@@ -19,13 +19,16 @@ permalink: /storeImage/
     border: 1px solid rgba(56, 189, 248, 0.3);
     margin-bottom: 1.2rem;
     transition: all 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .store-back-btn:hover {
-    background: rgba(56, 189, 248, 0.15);
-    border-color: rgba(56, 189, 248, 0.7);
-    color: #e0f7fa;
-    transform: translateX(-3px);
+  @media (hover: hover) and (pointer: fine) {
+    .store-back-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.7);
+      color: #e0f7fa;
+      transform: translateX(-3px);
+    }
   }
 
   .photo-grid {
@@ -45,12 +48,21 @@ permalink: /storeImage/
     cursor: zoom-in;
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .photo-item:hover {
-    transform: translateY(-3px);
-    border-color: rgba(56, 189, 248, 0.65);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 1);
+  @media (hover: hover) and (pointer: fine) {
+    .photo-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 1);
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+    }
   }
 
   .photo-item img {
@@ -59,10 +71,22 @@ permalink: /storeImage/
     object-fit: cover;
     display: block;
     transition: transform 0.28s ease;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
-  .photo-item:hover img {
-    transform: scale(1.05);
+  /* Lớp khiên trong suốt phủ lên ảnh */
+  .img-shield {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   /* Lightbox phủ đen mờ toàn màn hình */
@@ -81,10 +105,24 @@ permalink: /storeImage/
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .lightbox-overlay.active {
     display: flex;
+  }
+
+  .lightbox-img-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .lightbox-img {
@@ -93,7 +131,12 @@ permalink: /storeImage/
     border-radius: 0.75rem;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
     object-fit: contain;
-    z-index: 100000;
+    display: block;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
   }
 
   .lightbox-close,
@@ -112,13 +155,32 @@ permalink: /storeImage/
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.18s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    transition: background 0.15s ease, transform 0.12s ease;
   }
 
-  .lightbox-close:hover,
-  .lightbox-prev:hover,
-  .lightbox-next:hover {
-    background: rgba(56, 189, 248, 0.3);
+  /* Chỉ sáng nút khi rê chuột trên máy tính, tránh bị dính sáng trên điện thoại */
+  @media (hover: hover) and (pointer: fine) {
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(56, 189, 248, 0.3);
+    }
+  }
+
+  /* Hiệu ứng nhấn trên điện thoại: sáng nhẹ lúc chạm và tự nhả ngay khi thả tay */
+  .lightbox-close:active {
+    background: rgba(56, 189, 248, 0.35);
+    transform: scale(0.92);
+  }
+
+  .lightbox-prev:active,
+  .lightbox-next:active {
+    background: rgba(56, 189, 248, 0.35);
+    transform: translateY(-50%) scale(0.92);
   }
 
   .lightbox-close { top: 20px; right: 24px; }
@@ -158,18 +220,20 @@ permalink: /storeImage/
       <span style="font-size: 0.85rem; color: #9ca3af;">Thời gian: {{ item.date }}</span>
     </div>
 
-    <div class="photo-grid">
+    <div class="photo-grid" oncontextmenu="return false;">
       {% assign sorted_files = site.static_files | sort: "name" %}
       {% for file in sorted_files %}
         {% if file.path contains folder_path %}
           {% assign ext = file.extname | downcase %}
           {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}
-            <div class="photo-item" onclick="openLightbox(this)">
+            <div class="photo-item" onclick="openLightbox(this)" oncontextmenu="return false;">
               <img
                 src="{{ site.baseurl }}{{ file.path }}"
                 alt="{{ item.title }}"
                 loading="lazy"
+                draggable="false"
               />
+              <div class="img-shield" oncontextmenu="return false;"></div>
             </div>
           {% endif %}
         {% endif %}
@@ -179,12 +243,17 @@ permalink: /storeImage/
   </section>
 {% endfor %}
 
-<!-- Lightbox xem ảnh phóng to -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)">
-  <button class="lightbox-close" onclick="closeLightbox()" title="Đóng (Esc)">✕</button>
-  <button class="lightbox-prev" onclick="changePhoto(-1)" title="Ảnh trước">‹</button>
-  <img class="lightbox-img" id="lightbox-img" src="" alt="Preview" />
-  <button class="lightbox-next" onclick="changePhoto(1)" title="Ảnh tiếp theo">›</button>
+<!-- Lightbox xem ảnh phóng to có lớp khiên bảo vệ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)" oncontextmenu="return false;">
+  <button type="button" class="lightbox-close" onclick="closeLightbox()" title="Đóng (Esc)">✕</button>
+  <button type="button" class="lightbox-prev" onclick="changePhoto(-1)" title="Ảnh trước">‹</button>
+  
+  <div class="lightbox-img-wrapper" oncontextmenu="return false;">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Preview" draggable="false" />
+    <div class="img-shield" oncontextmenu="return false;"></div>
+  </div>
+
+  <button type="button" class="lightbox-next" onclick="changePhoto(1)" title="Ảnh tiếp theo">›</button>
   <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
@@ -193,11 +262,26 @@ permalink: /storeImage/
   let currentIndex = 0;
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Đưa khung Lightbox ra ngoài cùng (vào thẳng <body>) để che phủ cả Navbar và cột ABOUT ME
     const lightboxEl = document.getElementById("lightbox");
     if (lightboxEl) {
       document.body.appendChild(lightboxEl);
+
+      lightboxEl.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+      lightboxEl.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
     }
+
+    document.querySelectorAll(".photo-grid").forEach((grid) => {
+      grid.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+      });
+      grid.addEventListener("dragstart", function (e) {
+        e.preventDefault();
+      });
+    });
 
     const params = new URLSearchParams(window.location.search);
     const albumId = params.get("album");
@@ -222,7 +306,7 @@ permalink: /storeImage/
     currentIndex = currentPhotos.indexOf(el.querySelector("img").src);
     updateLightbox();
     document.getElementById("lightbox").classList.add("active");
-    document.body.style.overflow = "hidden"; // Khóa cuộn trang nền phía sau
+    document.body.style.overflow = "hidden";
   }
 
   function updateLightbox() {
@@ -234,11 +318,14 @@ permalink: /storeImage/
   function changePhoto(step) {
     currentIndex = (currentIndex + step + currentPhotos.length) % currentPhotos.length;
     updateLightbox();
+    if (document.activeElement) {
+      document.activeElement.blur(); // Xóa trạng thái focus giữ trên nút sau khi bấm
+    }
   }
 
   function closeLightbox() {
     document.getElementById("lightbox").classList.remove("active");
-    document.body.style.overflow = ""; // Mở lại cuộn trang
+    document.body.style.overflow = "";
   }
 
   function closeLightboxOnBg(e) {
