@@ -60,29 +60,30 @@ permalink: /storeImage/
       border-color: rgba(56, 189, 248, 0.65);
       box-shadow: 0 16px 36px rgba(15, 23, 42, 1);
     }
-    .photo-item:hover img {
+    .photo-item:hover .photo-bg {
       transform: scale(1.05);
     }
   }
 
-  .photo-item img {
+  /* Hiển thị ảnh dạng nền CSS để trình duyệt PC không nhận diện là thẻ <img> */
+  .photo-bg {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     transition: transform 0.28s ease;
     pointer-events: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
-    -webkit-user-drag: none;
   }
 
-  /* Lớp khiên trong suốt phủ lên ảnh */
+  /* Lớp khiên nằm đè lên trên cùng */
   .img-shield {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 100005;
     background: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -125,25 +126,23 @@ permalink: /storeImage/
     user-select: none;
   }
 
-  .lightbox-img {
-    max-width: 90vw;
-    max-height: 85vh;
+  .lightbox-bg {
     border-radius: 0.75rem;
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
-    object-fit: contain;
-    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     pointer-events: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
-    -webkit-user-drag: none;
   }
 
   .lightbox-close,
   .lightbox-prev,
   .lightbox-next {
     position: fixed;
-    z-index: 100001;
+    z-index: 100010;
     background: rgba(15, 23, 42, 0.9);
     color: #e0f7fa;
     border: 1px solid rgba(56, 189, 248, 0.45);
@@ -162,7 +161,6 @@ permalink: /storeImage/
     transition: background 0.15s ease, transform 0.12s ease;
   }
 
-  /* Chỉ sáng nút khi rê chuột trên máy tính, tránh bị dính sáng trên điện thoại */
   @media (hover: hover) and (pointer: fine) {
     .lightbox-close:hover,
     .lightbox-prev:hover,
@@ -171,7 +169,6 @@ permalink: /storeImage/
     }
   }
 
-  /* Hiệu ứng nhấn trên điện thoại: sáng nhẹ lúc chạm và tự nhả ngay khi thả tay */
   .lightbox-close:active {
     background: rgba(56, 189, 248, 0.35);
     transform: scale(0.92);
@@ -189,7 +186,7 @@ permalink: /storeImage/
 
   .lightbox-counter {
     position: fixed;
-    z-index: 100001;
+    z-index: 100010;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -220,20 +217,22 @@ permalink: /storeImage/
       <span style="font-size: 0.85rem; color: #9ca3af;">Thời gian: {{ item.date }}</span>
     </div>
 
-    <div class="photo-grid" oncontextmenu="return false;">
+    <div class="photo-grid">
       {% assign sorted_files = site.static_files | sort: "name" %}
       {% for file in sorted_files %}
         {% if file.path contains folder_path %}
           {% assign ext = file.extname | downcase %}
           {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' %}
-            <div class="photo-item" onclick="openLightbox(this)" oncontextmenu="return false;">
-              <img
-                src="{{ site.baseurl }}{{ file.path }}"
-                alt="{{ item.title }}"
-                loading="lazy"
-                draggable="false"
-              />
-              <div class="img-shield" oncontextmenu="return false;"></div>
+            <div
+              class="photo-item"
+              data-src="{{ site.baseurl }}{{ file.path }}"
+              onclick="openLightbox(this)"
+            >
+              <div
+                class="photo-bg"
+                data-bg="{{ site.baseurl }}{{ file.path }}"
+              ></div>
+              <div class="img-shield"></div>
             </div>
           {% endif %}
         {% endif %}
@@ -243,14 +242,14 @@ permalink: /storeImage/
   </section>
 {% endfor %}
 
-<!-- Lightbox xem ảnh phóng to có lớp khiên bảo vệ -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)" oncontextmenu="return false;">
+<!-- Lightbox xem ảnh phóng to -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)">
   <button type="button" class="lightbox-close" onclick="closeLightbox()" title="Đóng (Esc)">✕</button>
   <button type="button" class="lightbox-prev" onclick="changePhoto(-1)" title="Ảnh trước">‹</button>
   
-  <div class="lightbox-img-wrapper" oncontextmenu="return false;">
-    <img class="lightbox-img" id="lightbox-img" src="" alt="Preview" draggable="false" />
-    <div class="img-shield" oncontextmenu="return false;"></div>
+  <div class="lightbox-img-wrapper">
+    <div class="lightbox-bg" id="lightbox-bg"></div>
+    <div class="img-shield"></div>
   </div>
 
   <button type="button" class="lightbox-next" onclick="changePhoto(1)" title="Ảnh tiếp theo">›</button>
@@ -260,27 +259,20 @@ permalink: /storeImage/
 <script>
   let currentPhotos = [];
   let currentIndex = 0;
+  let currentProbe = null;
 
   document.addEventListener("DOMContentLoaded", function () {
     const lightboxEl = document.getElementById("lightbox");
     if (lightboxEl) {
       document.body.appendChild(lightboxEl);
-
-      lightboxEl.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-      });
-      lightboxEl.addEventListener("dragstart", function (e) {
-        e.preventDefault();
-      });
     }
 
-    document.querySelectorAll(".photo-grid").forEach((grid) => {
-      grid.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-      });
-      grid.addEventListener("dragstart", function (e) {
-        e.preventDefault();
-      });
+    // Chặn chuột phải và kéo thả trên toàn bộ trang
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    document.addEventListener("dragstart", function (e) {
+      e.preventDefault();
     });
 
     const params = new URLSearchParams(window.location.search);
@@ -298,19 +290,65 @@ permalink: /storeImage/
     if (!matched) {
       sections.forEach((sec) => (sec.style.display = "block"));
     }
+
+    initLazyImages();
   });
+
+  // Tải ảnh nền mượt mà khi cuộn tới (tương đương loading="lazy")
+  function initLazyImages() {
+    const bgEls = document.querySelectorAll(".photo-bg[data-bg]");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            el.style.backgroundImage = 'url("' + el.dataset.bg + '")';
+            el.removeAttribute("data-bg");
+            obs.unobserve(el);
+          }
+        });
+      }, { rootMargin: "250px" });
+
+      bgEls.forEach((el) => observer.observe(el));
+    } else {
+      bgEls.forEach((el) => {
+        el.style.backgroundImage = 'url("' + el.dataset.bg + '")';
+      });
+    }
+  }
+
+  function fitLightboxSize(w, h) {
+    const bgEl = document.getElementById("lightbox-bg");
+    if (!w || !h) return;
+    const maxW = window.innerWidth * 0.9;
+    const maxH = window.innerHeight * 0.85;
+    const ratio = Math.min(maxW / w, maxH / h);
+    bgEl.style.width = Math.round(w * ratio) + "px";
+    bgEl.style.height = Math.round(h * ratio) + "px";
+  }
 
   function openLightbox(el) {
     const grid = el.closest(".photo-grid");
-    currentPhotos = Array.from(grid.querySelectorAll("img")).map((img) => img.src);
-    currentIndex = currentPhotos.indexOf(el.querySelector("img").src);
+    currentPhotos = Array.from(grid.querySelectorAll(".photo-item")).map(
+      (item) => item.dataset.src
+    );
+    currentIndex = currentPhotos.indexOf(el.dataset.src);
     updateLightbox();
     document.getElementById("lightbox").classList.add("active");
     document.body.style.overflow = "hidden";
   }
 
   function updateLightbox() {
-    document.getElementById("lightbox-img").src = currentPhotos[currentIndex];
+    const url = currentPhotos[currentIndex];
+    const bgEl = document.getElementById("lightbox-bg");
+    const probe = new Image();
+    probe.onload = function () {
+      fitLightboxSize(probe.naturalWidth, probe.naturalHeight);
+      bgEl.style.backgroundImage = 'url("' + url + '")';
+    };
+    probe.src = url;
+    currentProbe = probe;
+
     document.getElementById("lightbox-counter").textContent =
       (currentIndex + 1) + " / " + currentPhotos.length;
   }
@@ -319,7 +357,7 @@ permalink: /storeImage/
     currentIndex = (currentIndex + step + currentPhotos.length) % currentPhotos.length;
     updateLightbox();
     if (document.activeElement) {
-      document.activeElement.blur(); // Xóa trạng thái focus giữ trên nút sau khi bấm
+      document.activeElement.blur();
     }
   }
 
@@ -332,7 +370,20 @@ permalink: /storeImage/
     if (e.target.id === "lightbox") closeLightbox();
   }
 
+  window.addEventListener("resize", function () {
+    const lb = document.getElementById("lightbox");
+    if (lb && lb.classList.contains("active") && currentProbe) {
+      fitLightboxSize(currentProbe.naturalWidth, currentProbe.naturalHeight);
+    }
+  });
+
   document.addEventListener("keydown", function (e) {
+    // Chặn phím tắt lưu trang Ctrl+S / Cmd+S và xem mã nguồn Ctrl+U
+    if ((e.ctrlKey || e.metaKey) && ["s", "u"].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      return;
+    }
+
     const lb = document.getElementById("lightbox");
     if (!lb.classList.contains("active")) return;
     if (e.key === "Escape") closeLightbox();
