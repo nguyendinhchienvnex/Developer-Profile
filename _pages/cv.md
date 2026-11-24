@@ -4,10 +4,6 @@ title: "CV"
 ---
 
 <style>
-  .exp-card {
-  scroll-margin-top: 90px;
-  /* giữ nguyên các thuộc tính cũ */
-  }
   .cv-main-title {
     font-weight: 700;
     font-size: 2.1rem;
@@ -27,7 +23,7 @@ title: "CV"
     gap: 0.55rem;
   }
 
-  /* Profile Header Card - Responsive Flexbox */
+  /* Profile Header Card - Chống tràn tuyệt đối */
   .cv-profile-card {
     background: rgba(2, 6, 23, 0.65);
     border: 1px solid rgba(56, 189, 248, 0.25);
@@ -37,6 +33,10 @@ title: "CV"
     display: flex;
     align-items: center;
     gap: 1.45rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .cv-avatar-wrap {
@@ -55,19 +55,21 @@ title: "CV"
   }
 
   .cv-info-wrap {
-    flex: 1;
+    flex: 1 1 0%;
     min-width: 0;
+    max-width: 100%;
   }
 
   .cv-contact-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem 1.1rem;
+    gap: 0.55rem 1.15rem;
     list-style: none;
     padding: 0;
     margin: 0.85rem 0 1rem 0;
     font-size: 0.88rem;
     color: #cbd5e1;
+    width: 100%;
   }
 
   .cv-contact-list li {
@@ -75,6 +77,8 @@ title: "CV"
     align-items: flex-start;
     gap: 0.48rem;
     line-height: 1.45;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .cv-contact-list i {
@@ -84,17 +88,21 @@ title: "CV"
     margin-top: 0.15rem;
   }
 
+  .cv-contact-list a,
+  .cv-contact-list span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   .cv-contact-list a {
     color: #7dd3fc;
     text-decoration: none;
-    overflow-wrap: break-word;
-    word-break: normal;
   }
 
   .cv-contact-list span {
     color: #cbd5e1;
-    overflow-wrap: break-word;
-    word-break: normal;
   }
 
   .cv-contact-list a:hover {
@@ -104,23 +112,28 @@ title: "CV"
 
   .cv-status-pill {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.45rem;
     font-size: 0.8rem;
     font-weight: 500;
-    padding: 0.32rem 0.85rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 999px;
     background: rgba(56, 189, 248, 0.1);
     border: 1px solid rgba(56, 189, 248, 0.32);
     color: #bae6fd;
+    max-width: 100%;
+    line-height: 1.4;
   }
 
   .cv-status-pill i {
     color: #38bdf8;
+    flex-shrink: 0;
   }
 
   /* Experience Timeline Cards */
   .exp-card {
+    scroll-margin-top: 90px;
     background: rgba(2, 6, 23, 0.58);
     border: 1px solid rgba(148, 163, 184, 0.18);
     border-left: 3.5px solid #38bdf8;
@@ -238,7 +251,7 @@ title: "CV"
   }
 
   /* Responsive Breakpoints */
-  @media (max-width: 992px) {
+  @media (max-width: 1100px) {
     .cv-contact-list {
       grid-template-columns: minmax(0, 1fr);
     }
@@ -261,13 +274,14 @@ title: "CV"
     }
     .cv-contact-list {
       text-align: left;
-      max-width: 320px;
+      width: 100%;
+      max-width: 340px;
       margin-left: auto;
       margin-right: auto;
     }
     .cv-status-pill {
       justify-content: center;
-      line-height: 1.4;
+      border-radius: 0.85rem;
     }
   }
 </style>
