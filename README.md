@@ -1,71 +1,71 @@
 # **🌐** Developer Portfolio — Nguyễn Đình Chiến
 
-Website Portfolio cá nhân, hồ sơ năng lực trực tuyến (CV) và blog chia sẻ kiến thức kỹ thuật của **Nguyễn Đình Chiến** — Sinh viên chuyên ngành Công nghệ Phần mềm tại Học viện Kỹ thuật Mật mã (cơ sở TP.HCM), định hướng phát triển chuyên sâu về **Backend Engineering & DevOps**.
+Website Portfolio cá nhân, hồ sơ năng lực trực tuyến (CV) và blog chia sẻ kiến thức kỹ thuật của **Nguyễn Đình Chiến** — Fullstack Software Engineering, định hướng phát triển chuyên sâu về **Backend Engineering & DevOps**.
 
 ## <> Link website
 
-* **Trang chủ chính thức:** [https://nguyendinhchienvnex.github.io/Developer-Profile](https://nguyendinhchienvnex.github.io/Developer-Profile/)
+- **Trang chủ chính thức:** [https://nguyendinhchienvnex.github.io/Developer-Profile](https://nguyendinhchienvnex.github.io/Developer-Profile/)
 
 ## 📖 Mục lục
 
-* [ 1. Giới thiệu Dự án](#-1-giới-thiệu-dự-án)
+- [ 1. Giới thiệu Dự án](#-1-giới-thiệu-dự-án)
 
-* [ 2. Tính năng Nổi bật](#-2-tính-năng-nổi-bật)
+- [ 2. Tính năng Nổi bật](#-2-tính-năng-nổi-bật)
 
-* [ 3. Công nghệ Sử dụng](#-3-công-nghệ-sử-dụng)
+- [ 3. Công nghệ Sử dụng](#-3-công-nghệ-sử-dụng)
 
-* [ 4. Cấu trúc Thư mục](#-4-cấu-trúc-thư-mục)
+- [ 4. Cấu trúc Thư mục](#-4-cấu-trúc-thư-mục)
 
-* [ 5. Chi tiết Các trang Chính](#-5-chi-tiết-các-trang-chính)
+- [ 5. Chi tiết Các trang Chính](#-5-chi-tiết-các-trang-chính)
 
-* [ 6. Cài đặt & Chạy Cục bộ (Local)](#-6-cài-đặt--chạy-cục-bộ-local)
+- [ 6. Cài đặt & Chạy Cục bộ (Local)](#-6-cài-đặt--chạy-cục-bộ-local)
 
-* [ 7. Triển khai lên GitHub Pages](#-7-triển-khai-lên-github-pages)
+- [ 7. Triển khai lên GitHub Pages](#-7-triển-khai-lên-github-pages)
 
-* [ 8. Hướng dẫn Tùy chỉnh](#-8-hướng-dẫn-tùy-chỉnh)
+- [ 8. Hướng dẫn Tùy chỉnh](#-8-hướng-dẫn-tùy-chỉnh)
 
-* [ 9. Lộ trình Phát triển (Roadmap)](#-9-lộ-trình-phát-triển-roadmap)
+- [ 9. Lộ trình Phát triển (Roadmap)](#-9-lộ-trình-phát-triển-roadmap)
 
-* [ 10. Đóng góp](#-10-đóng-góp)
+- [ 10. Đóng góp](#-10-đóng-góp)
 
-* [ 11. Liên hệ](#-11-liên-hệ)
+- [ 11. Liên hệ](#-11-liên-hệ)
 
-* [ 12. Giấy phép](#-12-giấy-phép)
+- [ 12. Giấy phép](#-12-giấy-phép)
 
 ## 1. Giới thiệu Dự án
 
-Dự án này được xây dựng nhằm tạo ra một không gian số chuyên nghiệp để giới thiệu hành trình học tập, kỹ năng chuyên môn, các dự án phần mềm đã thực hiện cũng như lưu trữ những bài viết kỹ thuật và đầu sách tâm đắc.
+Dự án này được xây dựng nhằm tạo ra một không gian số chuyên nghiệp để giới thiệu bản thân, kỹ năng chuyên môn, các dự án phần mềm đã thực hiện cũng như lưu trữ những bài viết kỹ thuật và đầu sách tâm đắc.
 
 Sử dụng kiến trúc **Static Site Generation (SSG)** của **Jekyll** kết hợp cùng **GitHub Pages**, website đảm bảo:
 
-* **Tốc độ tải trang tức thì:** Toàn bộ nội dung được biên dịch sẵn thành các tệp HTML/CSS tĩnh tối ưu.
+- **Tốc độ tải trang tức thì:** Toàn bộ nội dung được biên dịch sẵn thành các tệp HTML/CSS tĩnh tối ưu.
 
-* **Dễ dàng bảo trì & mở rộng:** Nội dung bài viết, dự án và CV được viết hoàn toàn bằng **Markdown**, tách biệt hoàn toàn với tầng giao diện.
+- **Dễ dàng bảo trì & mở rộng:** Nội dung bài viết, dự án và CV được viết hoàn toàn bằng **Markdown**, tách biệt hoàn toàn với tầng giao diện.
 
-* **Chi phí vận hành bằng 0:** Lưu trữ và phân phối tự động thông qua hạ tầng CDN của GitHub Pages.
+- **Chi phí vận hành bằng 0:** Lưu trữ và phân phối tự động thông qua hạ tầng CDN của GitHub Pages.
 
 ## 2. Tính năng Nổi bật
 
-* **Thiết kế Responsive Đa thiết bị:** Tương thích hoàn hảo trên máy tính để bàn, máy tính bảng và điện thoại di động nhờ hệ thống lưới của **Bootstrap 5.3.3**.
+- **Thiết kế Responsive Đa thiết bị:** Tương thích hoàn hảo trên máy tính để bàn, máy tính bảng và điện thoại di động nhờ hệ thống lưới của **Bootstrap 5.3.3**.
 
-* **Giao diện Hiện đại & Tối giản:** Sử dụng bộ phông chữ **Inter** kết hợp hệ thống màu sắc tùy biến mang lại trải nghiệm đọc thoải mái, tập trung vào nội dung.
+- **Giao diện Hiện đại & Tối giản:** Sử dụng bộ phông chữ **Inter** kết hợp hệ thống màu sắc tùy biến mang lại trải nghiệm đọc thoải mái, tập trung vào nội dung.
 
-* **Tích hợp CV Trực tuyến & Tải PDF:** Trình bày chi tiết học vấn, kỹ năng kỹ thuật và kinh nghiệm dự án ngay trên web, kèm nút tải nhanh bản cứng `Nguyen_Dinh_Chien_CV.pdf`.
+- **Tích hợp CV Trực tuyến & Tải PDF:** Trình bày chi tiết học vấn, kỹ năng kỹ thuật và kinh nghiệm dự án ngay trên web, kèm nút tải nhanh bản cứng `Nguyen_Dinh_Chien_CV.pdf`.
 
-* **Quản lý Nội dung Dạng Module:** Phân tách rõ ràng giữa Trang chủ, CV, Dự án, Blog kỹ thuật và Tủ sách cá nhân.
+- **Quản lý Nội dung Dạng Module:** Phân tách rõ ràng giữa Trang chủ, CV, Dự án, Blog kỹ thuật và Tủ sách cá nhân.
 
-* **Tối ưu SEO & Chia sẻ:** Hỗ trợ cấu hình metadata chuẩn hóa qua tệp `_config.yml`.
+- **Tối ưu SEO & Chia sẻ:** Hỗ trợ cấu hình metadata chuẩn hóa qua tệp `_config.yml`.
 
 ## 3. Công nghệ Sử dụng
 
-| Thành phần | Công nghệ / Thư viện | Vai trò trong hệ thống | 
-| ----- | ----- | ----- | 
-| **Static Site Generator** | Jekyll (`4.3+`) | Biên dịch Markdown, Liquid templates và SCSS thành website tĩnh. | 
-| **Template Engine** | Liquid | Xử lý vòng lặp, điều kiện, nhúng layout và biến cấu hình toàn cục. | 
-| **UI Framework** | Bootstrap `5.3.3` | Xây dựng bố cục lưới (Grid), thanh điều hướng (Navbar) và các thành phần giao diện. | 
-| **Typography & Styling** | Google Fonts (`Inter`) + Custom CSS | Định hình phong cách thiết kế tối giản, hiện đại và đồng nhất. | 
-| **Ngôn ngữ Nội dung** | Markdown & HTML5 | Soạn thảo nội dung các trang tĩnh và bài viết blog. | 
-| **Hosting & CI/CD** | GitHub Pages | Tự động build và triển khai website mỗi khi có commit mới lên nhánh chính. | 
+| Thành phần                | Công nghệ / Thư viện                | Vai trò trong hệ thống                                                              |
+| ------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------- |
+| **Static Site Generator** | Jekyll (`4.3+`)                     | Biên dịch Markdown, Liquid templates và SCSS thành website tĩnh.                    |
+| **Template Engine**       | Liquid                              | Xử lý vòng lặp, điều kiện, nhúng layout và biến cấu hình toàn cục.                  |
+| **UI Framework**          | Bootstrap `5.3.3`                   | Xây dựng bố cục lưới (Grid), thanh điều hướng (Navbar) và các thành phần giao diện. |
+| **Typography & Styling**  | Google Fonts (`Inter`) + Custom CSS | Định hình phong cách thiết kế tối giản, hiện đại và đồng nhất.                      |
+| **Ngôn ngữ Nội dung**     | Markdown & HTML5                    | Soạn thảo nội dung các trang tĩnh và bài viết blog.                                 |
+| **Hosting & CI/CD**       | GitHub Pages                        | Tự động build và triển khai website mỗi khi có commit mới lên nhánh chính.          |
 
 ## 4. Cấu trúc Thư mục
 
@@ -90,16 +90,16 @@ Portfolio-Repository/
 
 ## 5. Chi tiết Các trang Chính
 
-| Tệp nguồn | Đường dẫn (Permalink) | Mô tả chức năng & Nội dung | 
-| ----- | ----- | ----- | 
-| `index.md` | `/` | **Trang chủ:** Lời chào, tóm tắt định hướng nghề nghiệp (Backend/DevOps), kỹ năng cốt lõi và liên kết nhanh. | 
-| `_pages/cv.md` | `/cv/` | **Hồ sơ năng lực:** Thông tin học vấn tại HV Kỹ thuật Mật mã TP.HCM, kỹ năng lập trình, công cụ DevOps và liên kết tải PDF. | 
-| `_pages/projects.md` | `/projects/` | **Dự án:** Trình bày chi tiết các sản phẩm phần mềm đã xây dựng, kiến trúc công nghệ và liên kết mã nguồn GitHub. | 
-| `_pages/blog.md` | `/blog/` | **Blog Kỹ thuật:** Nơi ghi chép kiến thức lập trình, quản trị hệ thống, Linux, Docker và kinh nghiệm giải quyết vấn đề. | 
-| `_pages/books.md` | `/books/` | **Tủ sách:** Tổng hợp và tóm tắt những cuốn sách hay về tư duy kỹ thuật, kiến trúc phần mềm và phát triển bản thân. | 
-| `_pages/memories.md` | `/memories/` | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập *(hiện đang trống, sẽ cập nhật sau)*. | 
+| Tệp nguồn            | Đường dẫn (Permalink) | Mô tả chức năng & Nội dung                                                                                                  |
+| -------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `index.md`           | `/`                   | **Trang chủ:** Lời chào, tóm tắt định hướng nghề nghiệp (Backend/DevOps), kỹ năng cốt lõi và liên kết nhanh.                |
+| `_pages/cv.md`       | `/cv/`                | **Hồ sơ năng lực:** Thông tin học vấn tại HV Kỹ thuật Mật mã TP.HCM, kỹ năng lập trình, công cụ DevOps và liên kết tải PDF. |
+| `_pages/projects.md` | `/projects/`          | **Dự án:** Trình bày chi tiết các sản phẩm phần mềm đã xây dựng, kiến trúc công nghệ và liên kết mã nguồn GitHub.           |
+| `_pages/blog.md`     | `/blog/`              | **Blog Kỹ thuật:** Nơi ghi chép kiến thức lập trình, quản trị hệ thống, Linux, Docker và kinh nghiệm giải quyết vấn đề.     |
+| `_pages/books.md`    | `/books/`             | **Tủ sách:** Tổng hợp và tóm tắt những cuốn sách hay về tư duy kỹ thuật, kiến trúc phần mềm và phát triển bản thân.         |
+| `_pages/memories.md` | `/memories/`          | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập _(hiện đang trống, sẽ cập nhật sau)_.          |
 
-## 6. Cài đặt & Chạy 
+## 6. Cài đặt & Chạy
 
 Để chạy và xem trước website trên máy tính cá nhân trước khi đẩy lên GitHub, hãy thực hiện theo các bước sau:
 
@@ -107,11 +107,11 @@ Portfolio-Repository/
 
 Đảm bảo máy tính của bạn đã cài đặt:
 
-* **Ruby** (phiên bản `3.0` trở lên) và **RubyGems**
+- **Ruby** (phiên bản `3.0` trở lên) và **RubyGems**
 
-* **Bundler** (`gem install bundler`)
+- **Bundler** (`gem install bundler`)
 
-* **Git**
+- **Git**
 
 ### Bước 2: Sao chép mã nguồn & Cài đặt thư viện
 
@@ -145,10 +145,9 @@ Website được thiết kế để triển khai tự động trên **GitHub Pag
 2. Truy cập tab **Settings** $\rightarrow$ chọn mục **Pages** ở thanh menu bên trái.
 
 3. Tại phần **Build and deployment**:
+   - **Source:** Chọn `Deploy from a branch`.
 
-   * **Source:** Chọn `Deploy from a branch`.
-
-   * **Branch:** Chọn nhánh `main` (hoặc `master`), thư mục `/ (root)` và nhấn **Save**.
+   - **Branch:** Chọn nhánh `main` (hoặc `master`), thư mục `/ (root)` và nhấn **Save**.
 
 4. Chờ khoảng 1–2 phút để hệ thống GitHub Actions tự động build Jekyll. Khi hoàn tất, đường dẫn website trực tuyến sẽ hiển thị ngay phía trên mục cấu hình.
 
@@ -156,29 +155,29 @@ Website được thiết kế để triển khai tự động trên **GitHub Pag
 
 Bạn có thể dễ dàng cá nhân hóa portfolio này theo nhu cầu của riêng mình:
 
-* **Thông tin cấu hình chung:** Chỉnh sửa tệp `_config.yml` để thay đổi tiêu đề trang (`title`), mô tả (`description`), đường dẫn gốc (`url`, `baseurl`) và cấu trúc thanh điều hướng.
+- **Thông tin cấu hình chung:** Chỉnh sửa tệp `_config.yml` để thay đổi tiêu đề trang (`title`), mô tả (`description`), đường dẫn gốc (`url`, `baseurl`) và cấu trúc thanh điều hướng.
 
-* **Khung giao diện & Màu sắc:** Tùy chỉnh mã HTML, thư viện CDN hoặc viết thêm CSS tại tệp `_layouts/default.html`.
+- **Khung giao diện & Màu sắc:** Tùy chỉnh mã HTML, thư viện CDN hoặc viết thêm CSS tại tệp `_layouts/default.html`.
 
-* **Hình ảnh & CV:** Thay thế các hình ảnh trong thư mục `assets/images/` và cập nhật tệp `Nguyen_Dinh_Chien_CV.pdf` mới nhất tại thư mục gốc.
+- **Hình ảnh & CV:** Thay thế các hình ảnh trong thư mục `assets/images/` và cập nhật tệp `Nguyen_Dinh_Chien_CV.pdf` mới nhất tại thư mục gốc.
 
-* **Nội dung các trang:** Chỉnh sửa trực tiếp các tệp Markdown trong thư mục `_pages/` và `index.md`.
+- **Nội dung các trang:** Chỉnh sửa trực tiếp các tệp Markdown trong thư mục `_pages/` và `index.md`.
 
 ## 9. Lộ trình Phát triển (Roadmap)
 
-* \[x\] Xây dựng cấu trúc nền tảng với Jekyll & Bootstrap 5.3.3.
+- \[x\] Xây dựng cấu trúc nền tảng với Jekyll & Bootstrap 5.3.3.
 
-* \[x\] Hoàn thiện các trang cốt lõi: Home, CV, Projects, Blog, Books.
+- \[x\] Hoàn thiện các trang cốt lõi: Home, CV, Projects, Blog, Books.
 
-* \[x\] Tích hợp tải CV định dạng PDF trực tiếp.
+- \[x\] Tích hợp tải CV định dạng PDF trực tiếp.
 
-* \[ \] Hoàn thiện nội dung và bố cục thư viện ảnh cho trang `_pages/memories.md`.
+- \[ \] Hoàn thiện nội dung và bố cục thư viện ảnh cho trang `_pages/memories.md`.
 
-* \[ \] Bổ sung tính năng chuyển đổi giao diện Sáng / Tối (**Dark / Light Mode Toggle**).
+- \[ \] Bổ sung tính năng chuyển đổi giao diện Sáng / Tối (**Dark / Light Mode Toggle**).
 
-* \[ \] Tích hợp hệ thống phân loại bài viết theo thẻ (`Tags` / `Categories`) cho trang Blog.
+- \[ \] Tích hợp hệ thống phân loại bài viết theo thẻ (`Tags` / `Categories`) cho trang Blog.
 
-* \[ \] Hỗ trợ đa ngôn ngữ (**Tiếng Việt / Tiếng Anh**).
+- \[ \] Hỗ trợ đa ngôn ngữ (**Tiếng Việt / Tiếng Anh**).
 
 ## 10. Đóng góp
 
@@ -198,13 +197,13 @@ Mọi ý kiến đóng góp, báo lỗi giao diện hoặc đề xuất cải ti
 
 Nếu bạn có bất kỳ câu hỏi nào hoặc muốn trao đổi về cơ hội hợp tác, thực tập và công việc trong lĩnh vực **Backend / DevOps**, vui lòng liên hệ với tôi qua:
 
-* **Tác giả:** Nguyễn Đình Chiến
+- **Tác giả:** Nguyễn Đình Chiến
 
-* **Email:** `nguyendinhchienvnex@gmail.com`
+- **Email:** `nguyendinhchienvnex@gmail.com`
 
-* **GitHub:** `https://github.com/nguyendinhchienvnex`
+- **GitHub:** `https://github.com/nguyendinhchienvnex`
 
-* **LinkedIn:** `https://linkedin.com/in/chien-nguyen-dinh`
+- **LinkedIn:** `https://linkedin.com/in/chien-nguyen-dinh`
 
 ## 12. Giấy phép
 
