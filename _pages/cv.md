@@ -23,7 +23,7 @@ title: "CV"
     gap: 0.55rem;
   }
 
-  /* Profile Header Card - Chống tràn tuyệt đối */
+  /* Profile Header Card - Cắt dấu ... trên 1 dòng, không tràn div */
   .cv-profile-card {
     background: rgba(2, 6, 23, 0.65);
     border: 1px solid rgba(56, 189, 248, 0.25);
@@ -74,26 +74,28 @@ title: "CV"
 
   .cv-contact-list li {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.48rem;
     line-height: 1.45;
     min-width: 0;
     max-width: 100%;
+    overflow: hidden;
   }
 
   .cv-contact-list i {
     color: #38bdf8;
     font-size: 0.95rem;
     flex-shrink: 0;
-    margin-top: 0.15rem;
   }
 
   .cv-contact-list a,
   .cv-contact-list span {
+    display: block;
+    flex: 1 1 auto;
     min-width: 0;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .cv-contact-list a {
@@ -112,7 +114,6 @@ title: "CV"
 
   .cv-status-pill {
     display: inline-flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 0.45rem;
     font-size: 0.8rem;
@@ -123,12 +124,20 @@ title: "CV"
     border: 1px solid rgba(56, 189, 248, 0.32);
     color: #bae6fd;
     max-width: 100%;
-    line-height: 1.4;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .cv-status-pill i {
     color: #38bdf8;
     flex-shrink: 0;
+  }
+
+  .cv-status-pill span {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* Experience Timeline Cards */
@@ -251,7 +260,7 @@ title: "CV"
   }
 
   /* Responsive Breakpoints */
-  @media (max-width: 1100px) {
+  @media (max-width: 992px) {
     .cv-contact-list {
       grid-template-columns: minmax(0, 1fr);
     }
@@ -278,10 +287,6 @@ title: "CV"
       max-width: 340px;
       margin-left: auto;
       margin-right: auto;
-    }
-    .cv-status-pill {
-      justify-content: center;
-      border-radius: 0.85rem;
     }
   }
 </style>
@@ -325,49 +330,49 @@ download
   </div>
 
   <div class="cv-info-wrap">
-    <h2 class="mb-1" style="font-size: 1.45rem; font-weight: 700; color: #f1f5f9; line-height: 1.3;">
+    <h2 class="mb-1" style="font-size: 1.45rem; font-weight: 700; color: #f1f5f9; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
       <span class="lang-vi">Nguyễn Đình Chiến (Chris Nguyen)</span>
       <span class="lang-en">Nguyen Dinh Chien (Chris Nguyen)</span>
     </h2>
-    <div style="font-size: 1rem; font-weight: 600; color: #38bdf8;">
+    <div style="font-size: 1rem; font-weight: 600; color: #38bdf8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
       Full Stack Software Engineer
     </div>
 
     <ul class="cv-contact-list">
       <li>
         <i class="bi bi-telephone-fill"></i>
-        <span>+84 981646705</span>
+        <span title="+84 981646705">+84 981646705</span>
       </li>
       <li>
         <i class="bi bi-envelope-fill"></i>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyendinhchienvnex@gmail.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyendinhchienvnex@gmail.com" target="_blank" rel="noopener noreferrer" title="nguyendinhchienvnex@gmail.com">
           nguyendinhchienvnex@gmail.com
         </a>
       </li>
       <li>
         <i class="bi bi-geo-alt-fill"></i>
-        <span class="lang-vi">TP. Hồ Chí Minh, Việt Nam</span>
-        <span class="lang-en">Ho Chi Minh City, Vietnam</span>
+        <span class="lang-vi" title="TP. Hồ Chí Minh, Việt Nam">TP. Hồ Chí Minh, Việt Nam</span>
+        <span class="lang-en" title="Ho Chi Minh City, Vietnam">Ho Chi Minh City, Vietnam</span>
       </li>
       <li>
         <i class="bi bi-translate"></i>
-        <span>TOEIC 800</span>
+        <span title="TOEIC 800">TOEIC 800</span>
       </li>
       <li>
         <i class="bi bi-linkedin"></i>
-        <a href="https://www.linkedin.com/in/chien-nguyen-dinh" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/chien-nguyen-dinh" target="_blank" rel="noopener noreferrer" title="linkedin.com/in/chien-nguyen-dinh">
           linkedin.com/in/chien-nguyen-dinh
         </a>
       </li>
       <li>
         <i class="bi bi-github"></i>
-        <a href="https://github.com/nguyendinhchienvnex" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/nguyendinhchienvnex" target="_blank" rel="noopener noreferrer" title="github.com/nguyendinhchienvnex">
           github.com/nguyendinhchienvnex
         </a>
       </li>
     </ul>
 
-    <div class="cv-status-pill">
+    <div class="cv-status-pill" title="Sẵn sàng cho vị trí Full Stack / Backend Software Engineer">
       <i class="bi bi-briefcase-fill"></i>
       <span class="lang-vi">Sẵn sàng cho vị trí Full Stack / Backend Software Engineer</span>
       <span class="lang-en">Open to Full Stack / Backend Software Engineer Roles</span>
