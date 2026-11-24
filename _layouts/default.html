@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" data-lang="vi">
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }} | {{ site.title }}</title>
   <meta name="description" content="{{ site.description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Khởi tạo ngôn ngữ ngay lập tức để tránh nháy giao diện -->
+  <script>
+    (function() {
+      const savedLang = localStorage.getItem('site_lang') || 'vi';
+      document.documentElement.setAttribute('data-lang', savedLang);
+      document.documentElement.setAttribute('lang', savedLang);
+    })();
+  </script>
+
   <!-- Favicon -->
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="{{ site.baseurl }}/assets/images/favicon.jpg"
-  >
-  <link
-    rel="shortcut icon"
-    href="{{ site.baseurl }}/assets/images/favicon.jpg"
-  >
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/images/favicon.png?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ site.baseurl }}/assets/images/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/favicon.png?v=2">
 
   <!-- Bootstrap CDN -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
   >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,12 +48,16 @@
 
     * { box-sizing: border-box; }
 
+    /* Quy tắc ẩn/hiện nội dung song ngữ toàn trang */
+    html[data-lang="vi"] .lang-en { display: none !important; }
+    html[data-lang="en"] .lang-vi { display: none !important; }
+
     .favicon-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline-block;
     }
 
     body {
@@ -76,12 +83,12 @@
     .page-shell {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 88px 1.25rem 2.75rem 1.25rem; /* 88px de tru navbar fixed top */
+      padding: 88px 1.25rem 2.75rem 1.25rem;
     }
 
     /* NAVBAR glass */
     .navbar {
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.82));
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.85));
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(148, 163, 184, 0.2);
@@ -116,8 +123,15 @@
     .navbar-toggler {
       border: 1px solid rgba(148, 163, 184, 0.5);
     }
+    .navbar-toggler:focus {
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+    }
     .navbar-toggler-icon {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(226,232,240,0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-nav {
+      align-items: center;
     }
 
     .nav-link {
@@ -155,7 +169,124 @@
       transform: scaleX(1);
     }
 
-    /* LAYOUT 2 COT */
+    /* DROPDOWN CHUYỂN NGÔN NGỮ (TRONG SUỐT + ICON CỜ + MŨI TÊN) */
+    .lang-nav-item {
+      display: flex;
+      align-items: center;
+      margin-right: 0.5rem;
+    }
+
+    .lang-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .lang-trigger {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      padding: 0.45rem 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .lang-trigger:hover {
+      color: #22d3ee;
+      background: rgba(56, 189, 248, 0.08) !important;
+    }
+
+    .lang-current-icon {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .lang-current-icon svg,
+    .lang-option svg {
+      border-radius: 2px;
+      display: block;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .lang-arrow {
+      transition: transform 0.2s ease, color 0.2s ease;
+      opacity: 0.85;
+    }
+
+    .lang-dropdown.open .lang-arrow {
+      transform: rotate(180deg);
+      color: #22d3ee;
+    }
+
+    /* Menu xổ xuống */
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 92px;
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+      padding: 4px;
+      box-shadow: 0 12px 28px rgba(2, 6, 23, 0.85);
+      display: none;
+      flex-direction: column;
+      z-index: 1050;
+    }
+
+    .lang-dropdown.open .lang-menu {
+      display: flex;
+      animation: langFadeIn 0.15s ease-out;
+    }
+
+    @keyframes langFadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lang-option {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      width: 100%;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .lang-option:hover {
+      background: rgba(56, 189, 248, 0.15) !important;
+      color: #22d3ee;
+    }
+
+    /* Ẩn ngôn ngữ hiện tại khỏi dropdown, chỉ hiện ngôn ngữ còn lại */
+    .lang-option.is-selected {
+      display: none !important;
+    }
+
+    /* LAYOUT 2 CỘT */
     main { margin-top: 0.5rem; }
 
     .page-layout {
@@ -276,15 +407,9 @@
       height: 120px;
       border-radius: 999px;
       margin: 0 auto 1rem auto;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #0f172a);
-      border: 2px solid rgba(248, 250, 252, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: #e5e7eb;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.95);
     }
 
     .sidebar-name {
@@ -363,6 +488,21 @@
     }
     #scrollTopBtn:hover { transform: translateY(-2px); }
 
+    @media (max-width: 991.98px) {
+      .navbar-nav {
+        align-items: flex-start;
+        padding-top: 0.75rem;
+        padding-bottom: 0.5rem;
+      }
+      .lang-nav-item {
+        margin-bottom: 0.4rem;
+        padding-left: 0.25rem;
+      }
+      .nav-link::after {
+        display: none;
+      }
+    }
+
     @media (max-width: 960px) {
       .page-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -376,7 +516,7 @@
       .navbar-brand { font-size: 0.82rem; }
     }
 
-    /*Hiệu ứng ánh sáng quét ngang liên tục */
+    /* Hiệu ứng ánh sáng quét ngang liên tục */
     .neon-sweep {
       position: relative;
       display: inline-block;
@@ -387,7 +527,6 @@
       overflow: hidden;
     }
 
-    /* Layer ánh sáng */
     .neon-sweep::after {
       content: "";
       position: absolute;
@@ -395,8 +534,6 @@
       left: -120%;
       width: 120%;
       height: 100%;
-
-      /* Vệt sáng gradient */
       background: linear-gradient(
         120deg,
         transparent,
@@ -404,18 +541,14 @@
         rgba(34, 197, 94, 0.45),
         transparent
       );
-
-      /* Hiệu ứng mờ nhẹ */
       filter: blur(3px);
       animation: neonShine 3s linear infinite;
     }
 
-    /* Chuyển động từ trái -> phải */
     @keyframes neonShine {
       0%   { left: -120%; }
       100% { left: 120%; }
     }
-
   </style>
 </head>
 <body>
@@ -427,102 +560,157 @@
       <a class="navbar-brand neon-sweep" href="{{ site.baseurl }}/">
         Developer Portfolio
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          <!-- Nút chuyển ngôn ngữ đặt trước Home -->
+          <li class="nav-item lang-nav-item">
+            <div class="lang-dropdown" id="langDropdown">
+              <button type="button" class="lang-trigger" id="langTrigger" aria-expanded="false" aria-label="Chọn ngôn ngữ">
+                <span class="lang-current-icon" id="langCurrentIcon"></span>
+                <span class="lang-current-text" id="langCurrentText">VI</span>
+                <svg class="lang-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+              <div class="lang-menu" id="langMenu" role="menu">
+                <button type="button" class="lang-option" data-set-lang="vi" role="menuitem">
+                  <svg width="18" height="13" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="20" rx="2" fill="#DA251D"/>
+                    <polygon points="15,4 16.76,9.41 22.46,9.41 17.85,12.76 19.61,18.18 15,14.83 10.39,18.18 12.15,12.76 7.54,9.41 13.24,9.41" fill="#FFFF00"/>
+                  </svg>
+                  <span>VI</span>
+                </button>
+
+                <button type="button" class="lang-option" data-set-lang="en" role="menuitem">
+                  <svg width="18" height="13" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="30" height="20" rx="2" fill="#B22234"/>
+                    <path d="M0,3.08H30M0,6.15H30M0,9.23H30M0,12.31H30M0,15.38H30M0,18.46H30" stroke="#FFF" stroke-width="1.5"/>
+                    <rect width="13" height="10.8" rx="1" fill="#3C3B6E"/>
+                    <circle cx="3.5" cy="3" r="0.8" fill="#FFF"/><circle cx="6.5" cy="3" r="0.8" fill="#FFF"/><circle cx="9.5" cy="3" r="0.8" fill="#FFF"/>
+                    <circle cx="5" cy="5.4" r="0.8" fill="#FFF"/><circle cx="8" cy="5.4" r="0.8" fill="#FFF"/>
+                    <circle cx="3.5" cy="7.8" r="0.8" fill="#FFF"/><circle cx="6.5" cy="7.8" r="0.8" fill="#FFF"/><circle cx="9.5" cy="7.8" r="0.8" fill="#FFF"/>
+                  </svg>
+                  <span>EN</span>
+                </button>
+              </div>
+            </div>
+          </li>
+
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url == '/' %}active{% endif %}"
-              href="{{ site.baseurl }}/"
-            >Home</a>
+            <a class="nav-link {% if current_url == '/' %}active{% endif %}" href="{{ site.baseurl }}/">
+              <span class="lang-vi">Trang chủ</span>
+              <span class="lang-en">Home</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url contains '/projects' %}active{% endif %}"
-              href="{{ site.baseurl }}/projects"
-            >Projects</a>
+            <a class="nav-link {% if current_url contains '/projects' %}active{% endif %}" href="{{ site.baseurl }}/projects">
+              <span class="lang-vi">Dự án</span>
+              <span class="lang-en">Projects</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url contains '/blog' %}active{% endif %}"
-              href="{{ site.baseurl }}/blog"
-            >Blog</a>
+            <a class="nav-link {% if current_url contains '/blog' %}active{% endif %}" href="{{ site.baseurl }}/blog">
+              <span class="lang-vi">Bài viết</span>
+              <span class="lang-en">Blog</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url contains '/books' %}active{% endif %}"
-              href="{{ site.baseurl }}/books"
-            >Books</a>
+            <a class="nav-link {% if current_url contains '/books' %}active{% endif %}" href="{{ site.baseurl }}/books">
+              <span class="lang-vi">Sách</span>
+              <span class="lang-en">Books</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url contains '/memories' or current_url contains '/storeImage' %}active{% endif %}"
-              href="{{ site.baseurl }}/memories"
-            >Memories</a>
+            <a class="nav-link {% if current_url contains '/memories' or current_url contains '/storeImage' %}active{% endif %}" href="{{ site.baseurl }}/memories">
+              <span class="lang-vi">Kỉ niệm</span>
+              <span class="lang-en">Memories</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link {% if current_url contains '/cv' %}active{% endif %}"
-              href="{{ site.baseurl }}/cv"
-            >CV</a>
+            <a class="nav-link {% if current_url contains '/cv' %}active{% endif %}" href="{{ site.baseurl }}/cv">
+              <span>CV</span>
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Content shell: 2 cot giong blog -->
+  <!-- Content shell: 2 cột -->
   <div class="page-shell">
     <main>
       <div class="page-layout">
-        <!-- Cot trai: noi dung chinh -->
+        <!-- Cột trái: nội dung chính -->
         <article class="content-card">
           <div class="content-inner">
             {{ content }}
           </div>
         </article>
 
-        <!-- Cot phai: sidebar (About me) -->
+        <!-- Cột phải: sidebar (About me) -->
         <aside class="sidebar-card">
           <div class="sidebar-inner">
-            <div class="sidebar-title">ABOUT ME</div>
-            <div class="sidebar-avatar" style="background:none; border:none; box-shadow:none; padding:0;">
-            <img
-              src="{{ site.baseurl }}/assets/images/avatar.jpg"
-              alt="Ảnh Nguyễn Đình Chiến"
-              style="
-                width:120px;
-                height:120px;
-                border-radius:999px;
-                object-fit:cover;
-                display:block;
-                margin:0 auto 1rem auto;
-                border:2px solid rgba(248,250,252,0.15);
-                box-shadow:0 16px 40px rgba(15, 23, 42, 0.95);
-              "
-            />
-          </div>
+            <div class="sidebar-title">
+              <span class="lang-vi">GIỚI THIỆU</span>
+              <span class="lang-en">ABOUT ME</span>
+            </div>
+            <div class="sidebar-avatar">
+              <img
+                src="{{ site.baseurl }}/assets/images/avatar.jpg"
+                alt="Ảnh Nguyễn Đình Chiến"
+                style="
+                  width:120px;
+                  height:120px;
+                  border-radius:999px;
+                  object-fit:cover;
+                  display:block;
+                  border:2px solid rgba(248,250,252,0.15);
+                  box-shadow:0 16px 40px rgba(15, 23, 42, 0.95);
+                "
+              />
+            </div>
 
-            <div class="sidebar-name">Nguyễn Đình Chiến</div>
+            <div class="sidebar-name lang-vi">Nguyễn Đình Chiến</div>
+            <div class="sidebar-name lang-en">Dinh Chien Nguyen</div>
             <div class="sidebar-role">
-              Sinh viên Khoa Công Nghệ Phần Mềm<br>
-              Học Viện Kĩ Thuật Mật Mã HCM
+              <span class="lang-vi">
+                Cử Nhân Khoa Công Nghệ Phần Mềm<br>
+                Học Viện Kĩ Thuật Mật Mã
+              </span>
+              <span class="lang-en">
+                Bachelor's Software Engineering <br>
+                Academy of Cryptography Techniques
+              </span>
             </div>
             <div class="sidebar-meta">
-              Khóa CT07 · Quan tâm đến Backend, Devops và phân tích dữ liệu.
+              <span class="lang-vi"> Quan tâm đến Backend, DevOps và Phân tích dữ liệu.</span>
+              <span class="lang-en"> Focused on Backend, DevOps &amp; Data Analysis.</span>
             </div>
 
             <div class="sidebar-links">
-              <span class="text-muted-soft">Liên hệ nhanh:</span>
+              <span class="text-muted-soft">
+                <span class="lang-vi">Liên hệ nhanh:</span>
+                <span class="lang-en">Quick links:</span>
+              </span>
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyendinhchienvnex@gmail.com&su=Li%C3%AAn%20h%E1%BB%87%20tuy%E1%BB%83n%20d%E1%BB%A5ng&body=Ch%C3%A0o%20anh%2Fch%E1%BB%8B%2C%0A%0AT%C3%B4i%20l%C3%A0%20Nguy%E1%BB%85n%20%C4%90%C3%ACnh%20Chi%E1%BA%BFn.%20T%C3%B4i%20mu%E1%BB%91n%20trao%20%C4%91%E1%BB%95i%20v%E1%BB%81%20c%C6%A1%20h%E1%BB%99i%20Backend%2FDevOps.%0A%0AXin%20c%E1%BA%A3m%20%C6%A1n%20anh%2Fch%E1%BB%8B."
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyendinhchienvnex@gmail.com&su=C%C6%A1%20h%E1%BB%99i%20h%E1%BB%A3p%20t%C3%A1c%20%2F%20Tuy%E1%BB%83n%20d%E1%BB%A5ng%20-%20Full%20Stack%20%2F%20Backend%20Engineer&body=Ch%C3%A0o%20Chi%E1%BA%BFn%2C%0A%0AM%C3%ACnh%20%C4%91%C3%A3%20xem%20qua%20Portfolio%20v%C3%A0%20CV%20c%E1%BB%A7a%20b%E1%BA%A1n%20v%C3%A0%20mu%E1%BB%91n%20trao%20%C4%91%E1%BB%95i%20th%C3%AAm%20v%E1%BB%81%20c%C6%A1%20h%E1%BB%99i%20c%C3%B4ng%20vi%E1%BB%87c.%0A%0ATr%C3%A2n%20tr%E1%BB%8Dng%2C"
                 target="_blank"
                 rel="noopener noreferrer">
-              Email cá nhân</a>
-              <a href="{{ site.baseurl }}/cv">Xem CV</a>
-              <a href="{{ site.baseurl }}/projects">Dự án nổi bật</a>
+                <span class="lang-vi">Email cá nhân</span>
+                <span class="lang-en">Personal Email</span>
+              </a>
+              <a href="{{ site.baseurl }}/cv">
+                <span class="lang-vi">Xem CV</span>
+                <span class="lang-en">View CV</span>
+              </a>
+              <a href="{{ site.baseurl }}/projects">
+                <span class="lang-vi">Dự án nổi bật</span>
+                <span class="lang-en">Featured Projects</span>
+              </a>
             </div>
           </div>
         </aside>
@@ -533,7 +721,8 @@
       <div class="container">
         <span>
           &copy; {{ site.time | date: "%Y" }} {{ site.title }}.
-          Built with Jekyll · Hosted on GitHub Pages.
+          <span class="lang-vi">Developer Portfolio · Lưu trữ trên GitHub Pages.</span>
+          <span class="lang-en">Developer Portfolio · Hosted on GitHub Pages.</span>
         </span>
       </div>
     </footer>
@@ -566,6 +755,75 @@
 
     scrollBtn.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropdown = document.getElementById('langDropdown');
+      const trigger = document.getElementById('langTrigger');
+      const currentIcon = document.getElementById('langCurrentIcon');
+      const currentText = document.getElementById('langCurrentText');
+      const options = document.querySelectorAll('.lang-option');
+
+      const flagsSVG = {
+        vi: `<svg width="18" height="13" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" rx="2" fill="#DA251D"/><polygon points="15,4 16.76,9.41 22.46,9.41 17.85,12.76 19.61,18.18 15,14.83 10.39,18.18 12.15,12.76 7.54,9.41 13.24,9.41" fill="#FFFF00"/></svg>`,
+        en: `<svg width="18" height="13" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" rx="2" fill="#B22234"/><path d="M0,3.08H30M0,6.15H30M0,9.23H30M0,12.31H30M0,15.38H30M0,18.46H30" stroke="#FFF" stroke-width="1.5"/><rect width="13" height="10.8" rx="1" fill="#3C3B6E"/><circle cx="3.5" cy="3" r="0.8" fill="#FFF"/><circle cx="6.5" cy="3" r="0.8" fill="#FFF"/><circle cx="9.5" cy="3" r="0.8" fill="#FFF"/><circle cx="5" cy="5.4" r="0.8" fill="#FFF"/><circle cx="8" cy="5.4" r="0.8" fill="#FFF"/><circle cx="3.5" cy="7.8" r="0.8" fill="#FFF"/><circle cx="6.5" cy="7.8" r="0.8" fill="#FFF"/><circle cx="9.5" cy="7.8" r="0.8" fill="#FFF"/></svg>`
+      };
+
+      function closeDropdown() {
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      function applyLanguage(lang) {
+        const validLang = (lang === 'en') ? 'en' : 'vi';
+        document.documentElement.setAttribute('data-lang', validLang);
+        document.documentElement.setAttribute('lang', validLang);
+        localStorage.setItem('site_lang', validLang);
+
+        currentIcon.innerHTML = flagsSVG[validLang];
+        currentText.textContent = validLang.toUpperCase();
+
+        options.forEach(opt => {
+          const optLang = opt.getAttribute('data-set-lang');
+          opt.classList.toggle('is-selected', optLang === validLang);
+        });
+      }
+
+      // Khởi tạo ngôn ngữ khi tải trang
+      const savedLang = document.documentElement.getAttribute('data-lang') || 'vi';
+      applyLanguage(savedLang);
+
+      // Mở/đóng dropdown khi bấm nút cờ
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = dropdown.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', isOpen);
+      });
+
+      // Chọn ngôn ngữ còn lại
+      options.forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const selectedLang = opt.getAttribute('data-set-lang');
+          applyLanguage(selectedLang);
+          closeDropdown();
+        });
+      });
+
+      // Đóng khi click ra ngoài hoặc bấm phím ESC
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          closeDropdown();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeDropdown();
+        }
+      });
     });
   </script>
 </body>
