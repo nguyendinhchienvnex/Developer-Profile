@@ -222,31 +222,3 @@ custom_css: "project-detail"
     </tbody>
   </table>
 </div>
-
-<!-- 5. HƯỚNG DẪN KHỞI CHẠY CỤC BỘ -->
-<h2 class="cs-section-heading">
-  <i class="bi bi-terminal-fill"></i>
-  <span class="lang-vi">5. Hướng dẫn Cài đặt &amp; Khởi chạy Cục bộ</span>
-  <span class="lang-en">5. Local Setup &amp; Quick Start</span>
-</h2>
-
-<div class="cs-card">
-<pre class="cs-code-block"># 1. Khởi tạo Database PostgreSQL
-psql -U postgres -c "CREATE DATABASE chien_store_db ENCODING 'UTF8';"
-
-# 2. Thiết lập &amp; chạy Backend (Django - Cổng 8000)
-
-cd backend
-python -m venv venv &amp;&amp; venv\Scripts\activate
-pip install -r requirements.txt &amp;&amp; pip install "psycopg[binary]" python-dotenv
-cp .env.example .env
-python manage.py migrate
-python manage.py runserver
-
-# 3. Thiết lập &amp; chạy Frontend (React + Vite)
-
-cd frontend
-npm install
-npm run dev</pre>
-
-</div>

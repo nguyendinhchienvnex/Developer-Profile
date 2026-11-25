@@ -40,7 +40,7 @@ Sử dụng kiến trúc **Static Site Generation (SSG)** của **Jekyll** kết
 
 - **Tốc độ tải trang tức thì:** Toàn bộ nội dung được biên dịch sẵn thành các tệp HTML/CSS tĩnh tối ưu.
 
-- **Dễ dàng bảo trì & mở rộng:** Nội dung bài viết, dự án và CV được viết hoàn toàn bằng **Markdown**, tách biệt hoàn toàn với tầng giao diện.
+- **Dễ dàng bảo trì & mở rộng:** Nội dung bài viết, dự án và CV được quản lý tập trung qua dữ liệu **YAML (`_data/`)** và **Markdown**, tách biệt hoàn toàn với tầng giao diện.
 
 - **Chi phí vận hành bằng 0:** Lưu trữ và phân phối tự động thông qua hạ tầng CDN của GitHub Pages.
 
@@ -50,9 +50,11 @@ Sử dụng kiến trúc **Static Site Generation (SSG)** của **Jekyll** kết
 
 - **Giao diện Hiện đại & Tối giản:** Sử dụng bộ phông chữ **Inter** kết hợp hệ thống màu sắc tùy biến mang lại trải nghiệm đọc thoải mái, tập trung vào nội dung.
 
+- **Hỗ trợ Song ngữ (Tiếng Việt / Tiếng Anh):** Chuyển đổi ngôn ngữ tức thì trên toàn bộ trang nhờ `lang-init.js` và `lang-switcher.js` mà không gây nháy giao diện.
+
 - **Tích hợp CV Trực tuyến & Tải PDF:** Trình bày chi tiết học vấn, kỹ năng kỹ thuật và kinh nghiệm dự án ngay trên web, kèm nút tải nhanh bản cứng `Nguyen_Dinh_Chien_CV.pdf`.
 
-- **Quản lý Nội dung Dạng Module:** Phân tách rõ ràng giữa Trang chủ, CV, Dự án, Blog kỹ thuật và Tủ sách cá nhân.
+- **Quản lý Nội dung Dạng Module:** Phân tách rõ ràng giữa Trang chủ, CV, Dự án (kèm trang chi tiết từng dự án), Blog kỹ thuật, Tủ sách và Kỷ niệm.
 
 - **Tối ưu SEO & Chia sẻ:** Hỗ trợ cấu hình metadata chuẩn hóa qua tệp `_config.yml`.
 
@@ -62,44 +64,82 @@ Sử dụng kiến trúc **Static Site Generation (SSG)** của **Jekyll** kết
 | ------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------- |
 | **Static Site Generator** | Jekyll (`4.3+`)                     | Biên dịch Markdown, Liquid templates và SCSS thành website tĩnh.                    |
 | **Template Engine**       | Liquid                              | Xử lý vòng lặp, điều kiện, nhúng layout và biến cấu hình toàn cục.                  |
-| **UI Framework**          | Bootstrap `5.3.3`                   | Xây dựng bố cục lưới (Grid), thanh điều hướng (Navbar) và các thành phần giao diện. |
-| **Typography & Styling**  | Google Fonts (`Inter`) + Custom CSS | Định hình phong cách thiết kế tối giản, hiện đại và đồng nhất.                      |
-| **Ngôn ngữ Nội dung**     | Markdown & HTML5                    | Soạn thảo nội dung các trang tĩnh và bài viết blog.                                 |
+| **UI Framework**          | Bootstrap `5.3.3` & Icons `1.11.3`  | Xây dựng bố cục lưới (Grid), thanh điều hướng (Navbar) và hệ thống biểu tượng.      |
+| **Typography & Styling**  | Google Fonts (`Inter`) + Custom CSS | Định hình phong cách thiết kế tối giản, hiện đại và module hóa theo từng trang.     |
+| **Client-side Scripts**   | Vanilla JavaScript (ES6+)           | Xử lý chuyển đổi ngôn ngữ VI/EN, cuộn mượt và trình xem ảnh Lightbox.              |
+| **Data & Content**        | YAML (`_data/*.yml`) & Markdown     | Lưu trữ dữ liệu có cấu trúc (profile, CV, dự án, blog, sách, kỷ niệm) và nội dung.  |
 | **Hosting & CI/CD**       | GitHub Pages                        | Tự động build và triển khai website mỗi khi có commit mới lên nhánh chính.          |
 
 ## 4. Cấu trúc Thư mục
 
-```
-Portfolio-Repository/
+```text
+github-portfolio/
+├── _config.yml                      # Tệp cấu hình trung tâm của Jekyll (tiêu đề, URL, điều hướng, collections)
+├── index.md                         # Trang chủ (Home) giới thiệu tổng quan về tác giả
+├── Nguyen_Dinh_Chien_CV.pdf         # Tệp CV định dạng PDF cho phép nhà tuyển dụng tải trực tiếp
+├── README.md                        # Tài liệu hướng dẫn và giới thiệu mã nguồn dự án
+│
+├── _data/                           # Kho dữ liệu nội dung có cấu trúc (YAML)
+│   ├── profile.yml                  # Thông tin cá nhân, liên hệ & avatar
+│   ├── home.yml                     # Chỉ số đánh giá & tech stack trang chủ
+│   ├── navigation.yml               # Danh mục điều hướng thanh Navbar
+│   ├── cv.yml                       # Kinh nghiệm làm việc, kỹ năng, học vấn
+│   ├── projects.yml                 # Danh sách dự án (doanh nghiệp & cá nhân)
+│   ├── chien_store.yml              # Chi tiết kỹ thuật dự án Chien Store
+│   ├── route_expense_tracking.yml   # Chi tiết kỹ thuật dự án Route-Expense-Tracking
+│   ├── blog.yml                     # Nội dung 3 trụ cột ghi chép kỹ thuật
+│   ├── books.yml                    # Danh sách sách & tư duy phát triển
+│   └── memories.yml                 # Dữ liệu các album kỷ niệm & cột mốc
+│
 ├── _layouts/
-│   └── default.html            # Khung giao diện HTML gốc (Header, Navbar, Footer, CDN Bootstrap/Inter)
-├── _pages/                     # Thư mục chứa toàn bộ các trang nội dung chính của website
-│   ├── cv.md                   # Trang Hồ sơ năng lực (Curriculum Vitae)
-│   ├── projects.md             # Trang Trưng bày các dự án tiêu biểu
-│   ├── blog.md                 # Trang Danh sách bài viết & chia sẻ kỹ thuật
-│   ├── books.md                # Trang Review & tổng hợp sách chuyên ngành/kỹ năng
-│   └── memories.md             # Trang Lưu trữ kỷ niệm (đang trong giai đoạn hoàn thiện nội dung)
-├── assets/
-│   └── images/                 # Thư mục lưu trữ ảnh đại diện, ảnh minh họa dự án và tài nguyên tĩnh
-├── _config.yml                 # Tệp cấu hình trung tâm của Jekyll (tiêu đề, URL, điều hướng, plugins)
-├── index.md                    # Trang chủ (Home) giới thiệu tổng quan về tác giả
-├── Nguyen_Dinh_Chien_CV.pdf    # Tệp CV định dạng PDF cho phép nhà tuyển dụng tải trực tiếp
-└── README.md                   # Tài liệu hướng dẫn và giới thiệu mã nguồn dự án
-
+│   └── default.html                 # Khung giao diện HTML gốc (Header, Navbar, Sidebar, Footer)
+│
+├── _includes/                       # Các thành phần giao diện tái sử dụng
+│   ├── head.html                    # Thẻ <head>: meta, Bootstrap CDN, Google Fonts, CSS
+│   ├── navbar.html                  # Thanh điều hướng + bộ chuyển đổi ngôn ngữ VI/EN
+│   ├── sidebar.html                 # Thẻ thông tin giới thiệu tác giả
+│   ├── footer.html                  # Chân trang + nút cuộn về đầu trang
+│   └── scripts.html                 # Nhúng Bootstrap JS, ui-scroll, lang-switcher
+│
+├── _pages/                          # Thư mục chứa toàn bộ các trang nội dung chính của website
+│   ├── cv.md                        # Trang Hồ sơ năng lực (Curriculum Vitae)
+│   ├── projects.md                  # Trang Trưng bày các dự án tiêu biểu
+│   ├── blog.md                      # Trang Danh sách bài viết & chia sẻ kỹ thuật
+│   ├── books.md                     # Trang Review & tổng hợp sách chuyên ngành/kỹ năng
+│   ├── memories.md                  # Trang Lưu trữ kỷ niệm & album ảnh
+│   ├── store-image.md               # Trang Lightbox xem ảnh phóng to từng album
+│   └── projects/                    # Các trang phân tích chi tiết từng dự án cá nhân
+│       ├── chien-store.md           # Chi tiết dự án Chien Store
+│       ├── route-expense-tracking.md # Chi tiết dự án Route-Expense-Tracking
+│       ├── milk-world-app.md        # Dự án Milk World App (sắp ra mắt)
+│       └── toeic-learning-platform.md # Dự án TOEIC Learning Platform (sắp ra mắt)
+│
+└── assets/                          # Tài nguyên tĩnh (CSS, JS, Hình ảnh)
+    ├── css/
+    │   ├── main.css                 # Stylesheet chính toàn trang
+    │   └── pages/                   # CSS riêng biệt cho từng trang (home, cv, projects, ...)
+    ├── js/
+    │   ├── lang-init.js             # Khởi tạo ngôn ngữ sớm tránh nháy giao diện
+    │   ├── lang-switcher.js         # Xử lý chuyển đổi ngôn ngữ VI/EN
+    │   ├── ui-scroll.js             # Hiệu ứng cuộn mượt & nút back-to-top
+    │   └── pages/store-image.js     # Xử lý hiển thị ảnh chi tiết từng album
+    └── images/                      # Ảnh đại diện, favicon, ảnh minh họa dự án & album kỷ niệm
 ```
 
 ## 5. Chi tiết Các trang Chính
 
-| Tệp nguồn            | Đường dẫn (Permalink) | Mô tả chức năng & Nội dung                                                                                                  |
-| -------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `index.md`           | `/`                   | **Trang chủ:** Lời chào, tóm tắt định hướng nghề nghiệp (Backend/DevOps), kỹ năng cốt lõi và liên kết nhanh.                |
-| `_pages/cv.md`       | `/cv/`                | **Hồ sơ năng lực:** Thông tin học vấn tại HV Kỹ thuật Mật mã TP.HCM, kỹ năng lập trình, công cụ DevOps và liên kết tải PDF. |
-| `_pages/projects.md` | `/projects/`          | **Dự án:** Trình bày chi tiết các sản phẩm phần mềm đã xây dựng, kiến trúc công nghệ và liên kết mã nguồn GitHub.           |
-| `_pages/blog.md`     | `/blog/`              | **Blog Kỹ thuật:** Nơi ghi chép kiến thức lập trình, quản trị hệ thống, Linux, Docker và kinh nghiệm giải quyết vấn đề.     |
-| `_pages/books.md`    | `/books/`             | **Tủ sách:** Tổng hợp và tóm tắt những cuốn sách hay về tư duy kỹ thuật, kiến trúc phần mềm và phát triển bản thân.         |
-| `_pages/memories.md` | `/memories/`          | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập.                                               |
+| Tệp nguồn                  | Đường dẫn (Permalink)                | Mô tả chức năng & Nội dung                                                                                                  |
+| -------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `index.md`                 | `/`                                  | **Trang chủ:** Lời chào, tóm tắt định hướng nghề nghiệp (Backend/DevOps), chỉ số đánh giá, kỹ năng cốt lõi và liên kết nhanh. |
+| `_pages/cv.md`             | `/cv/`                               | **Hồ sơ năng lực:** Thông tin học vấn tại HV Kỹ thuật Mật mã, kinh nghiệm làm việc, kỹ năng chuyên môn và liên kết tải PDF. |
+| `_pages/projects.md`       | `/projects/`                         | **Dự án:** Trình bày chi tiết các sản phẩm phần mềm doanh nghiệp & cá nhân, kiến trúc công nghệ và liên kết mã nguồn GitHub. |
+| `_pages/projects/*.md`     | `/projects/<ten-du-an>/`             | **Chi tiết Dự án:** Phân tích chuyên sâu từng dự án cá nhân (`Chien Store`, `Route-Expense-Tracking`, v.v.).                |
+| `_pages/blog.md`           | `/blog/`                             | **Blog Kỹ thuật:** Nơi ghi chép kiến thức lập trình, quản trị hệ thống, Linux, Docker và kinh nghiệm giải quyết vấn đề.     |
+| `_pages/books.md`          | `/books/`                            | **Tủ sách:** Tổng hợp và tóm tắt những cuốn sách hay về tư duy kỹ thuật, kiến trúc phần mềm và phát triển bản thân.         |
+| `_pages/memories.md`       | `/memories/`                         | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập (Lễ Bế Giảng, Dinh Độc Lập...).               |
+| `_pages/store-image.md`    | `/storeImage/`                       | **Xem ảnh:** Trình xem ảnh Lightbox phóng to từng bức ảnh trong các album kỷ niệm.                                          |
 
-## 6. Cài đặt & Chạy
+## 6. Cài đặt & Chạy Cục bộ (Local)
 
 Để chạy và xem trước website trên máy tính cá nhân trước khi đẩy lên GitHub, hãy thực hiện theo các bước sau:
 
@@ -115,32 +155,30 @@ Portfolio-Repository/
 
 ### Bước 2: Sao chép mã nguồn & Cài đặt thư viện
 
-```
+```bash
 # 1. Clone repository về máy
-git clone https://github.com/<your-github-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/nguyendinhchienvnex/Developer-Profile.git
+cd Developer-Profile
 
 # 2. Cài đặt Jekyll và các gem phụ thuộc (nếu có Gemfile)
 bundle install
 # Hoặc cài đặt trực tiếp Jekyll nếu chưa có Gemfile:
 gem install jekyll bundler
-
 ```
 
 ### Bước 3: Khởi chạy máy chủ phát triển
 
-```
+```bash
 bundle exec jekyll serve --livereload
-
 ```
 
-Sau khi biên dịch hoàn tất, mở trình duyệt và truy cập **`http://127.0.0.1:4000`**. Tham số `--livereload` giúp trình duyệt tự động làm mới mỗi khi bạn chỉnh sửa mã nguồn.
+Sau khi biên dịch hoàn tất, mở trình duyệt và truy cập **`http://127.0.0.1:4000/Developer-Profile/`**. Tham số `--livereload` giúp trình duyệt tự động làm mới mỗi khi bạn chỉnh sửa mã nguồn.
 
 ## 7. Triển khai lên GitHub Pages
 
 Website được thiết kế để triển khai tự động trên **GitHub Pages** chỉ với vài thao tác đơn giản:
 
-1. Đẩy toàn bộ mã nguồn lên repository GitHub của bạn (đặt tên repository theo định dạng `<username>.github.io` để sử dụng tên miền gốc).
+1. Đẩy toàn bộ mã nguồn lên repository GitHub của bạn (đặt tên repository theo định dạng `<username>.github.io` hoặc cấu hình `baseurl` tương ứng).
 
 2. Truy cập tab **Settings** $\rightarrow$ chọn mục **Pages** ở thanh menu bên trái.
 
@@ -155,9 +193,11 @@ Website được thiết kế để triển khai tự động trên **GitHub Pag
 
 Bạn có thể dễ dàng cá nhân hóa portfolio này theo nhu cầu của riêng mình:
 
-- **Thông tin cấu hình chung:** Chỉnh sửa tệp `_config.yml` để thay đổi tiêu đề trang (`title`), mô tả (`description`), đường dẫn gốc (`url`, `baseurl`) và cấu trúc thanh điều hướng.
+- **Thông tin cấu hình chung:** Chỉnh sửa tệp `_config.yml` để thay đổi tiêu đề trang (`title`), mô tả (`description`), đường dẫn gốc (`url`, `baseurl`) và cấu trúc thanh điều hướng (`_data/navigation.yml`).
 
-- **Khung giao diện & Màu sắc:** Tùy chỉnh mã HTML, thư viện CDN hoặc viết thêm CSS tại tệp `_layouts/default.html`.
+- **Dữ liệu nội dung các mục:** Cập nhật trực tiếp các tệp YAML trong thư mục `_data/` (`profile.yml`, `cv.yml`, `projects.yml`, `blog.yml`, `books.yml`, `memories.yml`, ...).
+
+- **Khung giao diện & Màu sắc:** Tùy chỉnh mã HTML tại `_layouts/default.html`, `_includes/` hoặc viết thêm CSS tại `assets/css/main.css` và `assets/css/pages/`.
 
 - **Hình ảnh & CV:** Thay thế các hình ảnh trong thư mục `assets/images/` và cập nhật tệp `Nguyen_Dinh_Chien_CV.pdf` mới nhất tại thư mục gốc.
 
@@ -165,19 +205,21 @@ Bạn có thể dễ dàng cá nhân hóa portfolio này theo nhu cầu của ri
 
 ## 9. Lộ trình Phát triển (Roadmap)
 
-- \[x\] Xây dựng cấu trúc nền tảng với Jekyll & Bootstrap 5.3.3.
+- [x] Xây dựng cấu trúc nền tảng với Jekyll & Bootstrap 5.3.3.
 
-- \[x\] Hoàn thiện các trang cốt lõi: Home, CV, Projects, Blog, Books.
+- [x] Hoàn thiện các trang cốt lõi: Home, CV, Projects, Blog, Books, Memories.
 
-- \[x\] Tích hợp tải CV định dạng PDF trực tiếp.
+- [x] Tích hợp cơ chế chuyển đổi song ngữ (Tiếng Việt / Tiếng Anh).
 
-- \[ \] Hoàn thiện nội dung và bố cục thư viện ảnh cho trang `_pages/memories.md`.
+- [x] Tích hợp tải CV định dạng PDF trực tiếp.
 
-- \[ \] Bổ sung tính năng chuyển đổi giao diện Sáng / Tối (**Dark / Light Mode Toggle**).
+- [ ] Hoàn thiện nội dung chi tiết cho các dự án sắp ra mắt (`Milk World App`, `TOEIC Learning Platform`).
 
-- \[ \] Tích hợp hệ thống phân loại bài viết theo thẻ (`Tags` / `Categories`) cho trang Blog.
+- [ ] Bổ sung tính năng chuyển đổi giao diện Sáng / Tối (**Dark / Light Mode Toggle**).
 
-- \[ \] Hỗ trợ đa ngôn ngữ (**Tiếng Việt / Tiếng Anh**).
+- [ ] Tích hợp hệ thống phân loại bài viết theo thẻ (`Tags` / `Categories`) cho trang Blog.
+
+- [ ] Thêm biểu mẫu liên hệ nhanh trực tiếp trên website.
 
 ## 10. Đóng góp
 
@@ -197,13 +239,17 @@ Mọi ý kiến đóng góp, báo lỗi giao diện hoặc đề xuất cải ti
 
 Nếu bạn có bất kỳ câu hỏi nào hoặc muốn trao đổi về cơ hội hợp tác, thực tập và công việc trong lĩnh vực **Backend / DevOps**, vui lòng liên hệ với tôi qua:
 
-- **Tác giả:** Nguyễn Đình Chiến
+- **Tác giả:** Nguyễn Đình Chiến (Chris Nguyen)
 
 - **Email:** `nguyendinhchienvnex@gmail.com`
+
+- **Điện thoại:** `+84 981646705`
 
 - **GitHub:** `https://github.com/nguyendinhchienvnex`
 
 - **LinkedIn:** `https://linkedin.com/in/chien-nguyen-dinh`
+
+- **Địa điểm:** TP. Hồ Chí Minh, Việt Nam
 
 ## 12. Giấy phép
 
