@@ -1,0 +1,48 @@
+metrics:
+  - value: "2+ Yrs"
+    label_vi: "Phát triển Web &amp; Ứng dụng thực tế"
+    label_en: "Web &amp; Software Engineering"
+
+  - value: "500+"
+    label_vi: "Thiết bị IoT xử lý đồng thời (FastAPI)"
+    label_en: "Concurrent IoT Streams Handled"
+
+  - value: "4s → &lt;1.5s"
+    label_vi: "Tối ưu tốc độ tải Dashboard 10k+ bản ghi"
+    label_en: "Dashboard Load Time Optimization"
+
+tech_groups:
+  - icon: "bi-hdd-network"
+    title_vi: "Backend &amp; Kiến trúc hệ thống"
+    title_en: "Backend &amp; System Architecture"
+    items:
+      - "Python"
+      - "Django &amp; DRF"
+      - "FastAPI (Async)"
+      - "RESTful APIs / WebAPI"
+      - "C# / C++"
+      - "MQTT / WebSockets"
+      - "OOP &amp; SOLID"
+
+  - icon: "bi-window-sidebar"
+    title_vi: "Frontend &amp; Trải nghiệm người dùng"
+    title_en: "Frontend &amp; UI/UX Engineering"
+    items:
+      - "ReactJS"
+      - "TypeScript"
+      - "JavaScript (ES6+)"
+      - "AngularJS"
+      - "Bootstrap 5"
+      - "BulmaCSS / jQuery"
+
+  - icon: "bi-database-check"
+    title_vi: "Cơ sở dữ liệu, Caching &amp; DevOps"
+    title_en: "Databases, Caching &amp; DevOps"
+    items:
+      - "PostgreSQL (Partitioning)"
+      - "MySQL"
+      - "MS SQL Server"
+      - "Redis Cache"
+      - "Docker &amp; Docker Compose"
+      - "Git / GitHub CI/CD"
+      - "TOEIC 800"

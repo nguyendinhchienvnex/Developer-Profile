@@ -1,0 +1,240 @@
+.store-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  margin-bottom: 1.25rem;
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .store-back-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.75);
+    color: #e0f7fa;
+    transform: translateX(-3px);
+  }
+}
+
+.album-container {
+  display: none;
+}
+
+.album-title {
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.4px;
+  background: linear-gradient(135deg, #38bdf8, #22d3ee, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.album-desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 0.35rem;
+}
+
+.album-divider {
+  border-color: rgba(148, 163, 184, 0.18);
+  margin: 1.25rem 0;
+}
+
+.album-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.album-date-badge i {
+  color: #38bdf8;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.95rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  aspect-ratio: 4 / 3;
+  cursor: zoom-in;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .photo-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 1);
+  }
+  .photo-item:hover .photo-bg {
+    transform: scale(1.05);
+  }
+}
+
+/* Hiển thị ảnh dạng nền CSS để trình duyệt PC không nhận diện là thẻ <img> */
+.photo-bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.28s ease;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Lớp khiên nằm đè lên trên cùng */
+.img-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 100005;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Lightbox phủ đen mờ toàn màn hình */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(2, 6, 23, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox-overlay.active {
+  display: flex;
+}
+
+.lightbox-img-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox-bg {
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  z-index: 100010;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e0f7fa;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    background: rgba(56, 189, 248, 0.3);
+    color: #ffffff;
+  }
+}
+
+.lightbox-close:active {
+  background: rgba(56, 189, 248, 0.35);
+  transform: scale(0.92);
+}
+
+.lightbox-prev:active,
+.lightbox-next:active {
+  background: rgba(56, 189, 248, 0.35);
+  transform: translateY(-50%) scale(0.92);
+}
+
+.lightbox-close { top: 20px; right: 24px; }
+.lightbox-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox-next  { right: 20px; top: 50%; transform: translateY(-50%); }
+
+.lightbox-counter {
+  position: fixed;
+  z-index: 100010;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e0f7fa;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+@media (max-width: 640px) {
+  .album-title { font-size: 1.65rem; }
+  .photo-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+  .lightbox-close { top: 14px; right: 14px; }
+}

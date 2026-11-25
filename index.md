@@ -2,90 +2,10 @@
 layout: default
 title: "Home"
 title_vi: "Trang chủ"
+custom_css: "home"
 ---
 
-<style>
-  .hero-title {
-    font-weight: 700;
-    font-size: 2.25rem;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #38bdf8, #22d3ee, #4ade80);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .section-heading {
-    font-weight: 600;
-    font-size: 1.45rem;
-    color: #38bdf8;
-    margin-bottom: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-  }
-  .sub-heading-cyan {
-    font-weight: 600;
-    color: #22d3ee;
-    margin-bottom: 0.45rem;
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-  }
-  .metric-strip {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.85rem;
-    margin: 1.4rem 0;
-  }
-  .metric-box {
-    background: rgba(2, 6, 23, 0.65);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    border-radius: 1rem;
-    padding: 0.9rem 1rem;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-  .metric-box:hover {
-    border-color: rgba(56, 189, 248, 0.55);
-    transform: translateY(-2px);
-  }
-  .metric-value {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #38bdf8;
-    line-height: 1.2;
-  }
-  .metric-label {
-    font-size: 0.82rem;
-    color: #9ca3af;
-    margin-top: 0.25rem;
-  }
-  .tech-pill-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 1rem;
-  }
-  .tech-pill {
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.28rem 0.7rem;
-    border-radius: 999px;
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    color: #e2e8f0;
-  }
-  .custom-list {
-    color: #cbd5e1;
-    padding-left: 1.2rem;
-    line-height: 1.7;
-  }
-  .custom-list li {
-    margin-bottom: 0.35rem;
-  }
-  @media (max-width: 640px) {
-    .hero-title { font-size: 1.85rem; }
-    .metric-strip { grid-template-columns: minmax(0, 1fr); }
-  }
-</style>
+{% assign home_data = site.data.home %}
 
 <!-- HERO SECTION -->
 <div class="hero mb-4">
@@ -100,7 +20,7 @@ title_vi: "Trang chủ"
     <span class="lang-en">Nguyen Dinh Chien (Chris Nguyen)</span>
   </h1>
 
-  <p class="hero-sub mb-3" style="color:#94a3b8; font-weight:500;">
+  <p class="hero-sub mb-3">
     <span class="lang-vi">
       <i class="bi bi-code-slash text-info me-1"></i> Full Stack Software Engineer · Kỹ sư Công nghệ Thông tin
     </span>
@@ -109,7 +29,7 @@ title_vi: "Trang chủ"
     </span>
   </p>
 
-  <p class="mb-3" style="color:#cbd5e1; line-height:1.7;">
+  <p class="home-lead mb-3">
     <span class="lang-vi">
       Kỹ sư phần mềm với <strong>2 năm kinh nghiệm phát triển Web</strong> và <strong>1 năm xây dựng ứng dụng phần mềm</strong> thực tế.
       Mình chuyên thiết kế các hệ thống Backend chịu tải cao với <strong>Python (Django, FastAPI)</strong>, kết hợp giao diện <strong>ReactJS &amp; TypeScript</strong> mượt mà, tối ưu hiệu năng truy vấn cơ sở dữ liệu và tích hợp quy trình AI hiện đại vào sản phẩm.
@@ -120,29 +40,17 @@ title_vi: "Trang chủ"
     </span>
   </p>
 
-  <!-- Highlight Metrics -->
+  <!-- Highlight Metrics (Render từ _data/home.yml) -->
   <div class="metric-strip">
-    <div class="metric-box">
-      <div class="metric-value">2+ Yrs</div>
-      <div class="metric-label">
-        <span class="lang-vi">Phát triển Web &amp; Ứng dụng thực tế</span>
-        <span class="lang-en">Web &amp; Software Engineering</span>
+    {% for metric in home_data.metrics %}
+      <div class="metric-box">
+        <div class="metric-value">{{ metric.value }}</div>
+        <div class="metric-label">
+          <span class="lang-vi">{{ metric.label_vi }}</span>
+          <span class="lang-en">{{ metric.label_en }}</span>
+        </div>
       </div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-value">500+</div>
-      <div class="metric-label">
-        <span class="lang-vi">Thiết bị IoT xử lý đồng thời (FastAPI)</span>
-        <span class="lang-en">Concurrent IoT Streams Handled</span>
-      </div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-value">4s → &lt;1.5s</div>
-      <div class="metric-label">
-        <span class="lang-vi">Tối ưu tốc độ tải Dashboard 10k+ bản ghi</span>
-        <span class="lang-en">Dashboard Load Time Optimization</span>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 
   <!-- CTA Buttons -->
@@ -171,7 +79,7 @@ title_vi: "Trang chủ"
   class="img-fluid rounded-4 shadow-sm mb-4"
 />
 
-<hr style="border-color: rgba(148, 163, 184, 0.18);">
+<hr class="home-divider">
 
 <!-- ABOUT SECTION -->
 <h2 class="section-heading">
@@ -180,7 +88,7 @@ title_vi: "Trang chủ"
   <span class="lang-en">Core Value &amp; Engineering Mindset</span>
 </h2>
 
-<p style="color:#cbd5e1; line-height:1.7;">
+<p class="home-lead">
   <span class="lang-vi">
     Được đào tạo bài bản về Kỹ thuật phần mềm và An toàn thông tin tại <strong>Học viện Kỹ thuật Mật mã</strong>, cùng kinh nghiệm trực tiếp triển khai hệ thống <strong>ERP/CRM doanh nghiệp</strong> và hạ tầng <strong>IoT thời gian thực</strong>, mình tiếp cận bài toán từ góc nhìn kiến trúc tổng thể (End-to-End) đến trải nghiệm người dùng cuối:
   </span>
@@ -210,58 +118,28 @@ title_vi: "Trang chủ"
   class="img-fluid rounded-4 shadow-sm my-3"
 />
 
-<hr style="border-color: rgba(148, 163, 184, 0.18);">
+<hr class="home-divider">
 
-<!-- TECHNICAL SKILLS -->
+<!-- TECHNICAL SKILLS (Render từ _data/home.yml) -->
 <h2 class="section-heading">
   <i class="bi bi-cpu"></i>
   <span class="lang-vi">Năng lực công nghệ (Tech Stack)</span>
   <span class="lang-en">Technical Expertise</span>
 </h2>
 
-<p class="sub-heading-cyan">
-  <i class="bi bi-hdd-network"></i>
-  <span class="lang-vi">Backend &amp; Kiến trúc hệ thống</span>
-  <span class="lang-en">Backend &amp; System Architecture</span>
-</p>
-<div class="tech-pill-group">
-  <span class="tech-pill">Python</span>
-  <span class="tech-pill">Django &amp; DRF</span>
-  <span class="tech-pill">FastAPI (Async)</span>
-  <span class="tech-pill">RESTful APIs / WebAPI</span>
-  <span class="tech-pill">C# / C++</span>
-  <span class="tech-pill">MQTT / WebSockets</span>
-  <span class="tech-pill">OOP &amp; SOLID</span>
-</div>
+{% for group in home_data.tech_groups %}
 
-<p class="sub-heading-cyan">
-  <i class="bi bi-window-sidebar"></i>
-  <span class="lang-vi">Frontend &amp; Trải nghiệm người dùng</span>
-  <span class="lang-en">Frontend &amp; UI/UX Engineering</span>
-</p>
-<div class="tech-pill-group">
-  <span class="tech-pill">ReactJS</span>
-  <span class="tech-pill">TypeScript</span>
-  <span class="tech-pill">JavaScript (ES6+)</span>
-  <span class="tech-pill">AngularJS</span>
-  <span class="tech-pill">Bootstrap 5</span>
-  <span class="tech-pill">BulmaCSS / jQuery</span>
-</div>
-
-<p class="sub-heading-cyan">
-  <i class="bi bi-database-check"></i>
-  <span class="lang-vi">Cơ sở dữ liệu, Caching &amp; DevOps</span>
-  <span class="lang-en">Databases, Caching &amp; DevOps</span>
-</p>
-<div class="tech-pill-group">
-  <span class="tech-pill">PostgreSQL (Partitioning)</span>
-  <span class="tech-pill">MySQL</span>
-  <span class="tech-pill">MS SQL Server</span>
-  <span class="tech-pill">Redis Cache</span>
-  <span class="tech-pill">Docker &amp; Docker Compose</span>
-  <span class="tech-pill">Git / GitHub CI/CD</span>
-  <span class="tech-pill">TOEIC 800</span>
-</div>
+  <p class="sub-heading-cyan">
+    <i class="bi {{ group.icon }}"></i>
+    <span class="lang-vi">{{ group.title_vi }}</span>
+    <span class="lang-en">{{ group.title_en }}</span>
+  </p>
+  <div class="tech-pill-group">
+    {% for tech in group.items %}
+      <span class="tech-pill">{{ tech }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
 
 <img
   src="{{ site.baseurl }}/assets/images/home-3.jpg"
@@ -269,7 +147,7 @@ title_vi: "Trang chủ"
   class="img-fluid rounded-4 shadow-sm my-3"
 />
 
-<hr style="border-color: rgba(148, 163, 184, 0.18);">
+<hr class="home-divider">
 
 <!-- ROADMAP & GOALS -->
 <h2 class="section-heading">
@@ -278,7 +156,7 @@ title_vi: "Trang chủ"
   <span class="lang-en">Career Direction &amp; Focus</span>
 </h2>
 
-<ol class="custom-list" style="line-height:1.75;">
+<ol class="custom-list custom-list--relaxed">
   <li>
     <span class="lang-vi">
       <strong>Kiến tạo sản phẩm phần mềm quy mô lớn:</strong> Đảm nhận vai trò Full Stack / Backend Engineer trong các hệ thống có lượng truy cập cao, giải quyết trực tiếp bài toán hiệu năng, bảo mật và tích hợp dữ liệu thông minh.
@@ -305,7 +183,7 @@ title_vi: "Trang chủ"
   </li>
 </ol>
 
-<hr style="border-color: rgba(148, 163, 184, 0.18);">
+<hr class="home-divider">
 
 <!-- SITE NAVIGATION GUIDE -->
 <h2 class="section-heading">
@@ -333,8 +211,8 @@ title_vi: "Trang chủ"
   </li>
 </ul>
 
-<div class="mt-4 p-3 rounded-4" style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25);">
-  <p class="mb-0" style="color:#7dd3fc; font-size:0.95rem;">
+<div class="home-cta-note mt-4 p-3 rounded-4">
+  <p class="mb-0">
     <i class="bi bi-send-check me-2"></i>
     <span class="lang-vi">
       Cảm ơn anh/chị nhà tuyển dụng và quý đồng nghiệp đã ghé thăm. Rất hân hạnh được kết nối và trao đổi về các cơ hội hợp tác kỹ thuật!

@@ -1,0 +1,124 @@
+.hero-title {
+  font-weight: 700;
+  font-size: 2.25rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #38bdf8, #22d3ee, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.home-lead {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.home-divider {
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.section-heading {
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: #38bdf8;
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.sub-heading-cyan {
+  font-weight: 600;
+  color: #22d3ee;
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 1.4rem 0;
+}
+
+.metric-box {
+  background: rgba(2, 6, 23, 0.65);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.metric-box:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  transform: translateY(-2px);
+}
+
+.metric-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #38bdf8;
+  line-height: 1.2;
+}
+
+.metric-label {
+  font-size: 0.82rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+.tech-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.tech-pill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: #e2e8f0;
+}
+
+.custom-list {
+  color: #cbd5e1;
+  padding-left: 1.2rem;
+  line-height: 1.7;
+}
+
+.custom-list--relaxed {
+  line-height: 1.75;
+}
+
+.custom-list li {
+  margin-bottom: 0.35rem;
+}
+
+.home-cta-note {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.home-cta-note p {
+  color: #7dd3fc;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .metric-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

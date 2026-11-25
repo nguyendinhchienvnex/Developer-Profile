@@ -1,0 +1,65 @@
+enterprise:
+  - title: "AP-Enterprise Management Suite (ERP/CRM)"
+    icon: "bi-building-gear"
+    badge: "AI Power · 2026"
+    url: "/cv/#exp-ai-power"
+    desc_vi: "Nền tảng hoạch định nguồn lực doanh nghiệp (ERP/CRM) tích hợp thanh toán bảo mật chuẩn ACID, phân quyền đa tầng RBAC và kết nối luồng dữ liệu từ hệ sinh thái AI nội bộ."
+    desc_en: "Enterprise ERP/CRM platform featuring ACID-compliant payment gateways, granular multi-tier RBAC, and real-time data ingestion from internal AI modules."
+    metric_icon: "bi-lightning-charge-fill"
+    metric_vi: "Tối ưu ORM N+1 query: Giảm tải trang từ <strong>4s xuống &lt;1.5s</strong> (10.000+ bản ghi)"
+    metric_en: "Resolved ORM N+1 queries: Cut dashboard load time from <strong>4s to &lt;1.5s</strong> (10k+ records)"
+    tech:
+      - "Python"
+      - "Django REST"
+      - "ReactJS"
+      - "TypeScript"
+      - "PostgreSQL"
+
+  - title: "HI-Nexus IoT Core Backend"
+    icon: "bi-cpu-fill"
+    badge: "HI-TECH SOLUTION · 2025–2026"
+    url: "/cv/#exp-hitech"
+    desc_vi: "Hạ tầng IoT bất đồng bộ thay thế hệ thống monolithic cũ, thu thập và xử lý dữ liệu chuỗi thời gian từ hàng nghìn thiết bị thông minh qua giao thức MQTT/WebSockets."
+    desc_en: "Asynchronous IoT backend infrastructure replacing a legacy monolith, ingesting high-frequency time-series telemetry from thousands of smart devices via MQTT/WebSockets."
+    metric_icon: "bi-speedometer2"
+    metric_vi: "Xử lý <strong>500+ kết nối đồng thời</strong> · PostgreSQL Partitioning &amp; Redis Cache"
+    metric_en: "Handled <strong>500+ concurrent streams</strong> · PostgreSQL Partitioning &amp; Redis Cache"
+    tech:
+      - "FastAPI"
+      - "PostgreSQL"
+      - "Redis"
+      - "MQTT"
+      - "Docker Compose"
+
+personal:
+  - title: "Chien Store"
+    icon: "bi-bag-check-fill"
+    badge: "React · Django · PostgreSQL"
+    url: "/projects/chien-store/"
+    coming_soon: false
+    desc_vi: "Website bán hàng Full Stack xây dựng với React, Django REST API (Axios) và cơ sở dữ liệu PostgreSQL."
+    desc_en: "Full-stack e-commerce web application built with React, Django REST API (Axios), and PostgreSQL."
+
+  - title: "Route-Expense-Tracking"
+    icon: "bi-sign-turn-right-fill"
+    badge: "Python · Logistics"
+    url: "/projects/route-expense-tracking/"
+    coming_soon: false
+    desc_vi: "Phần mềm tối ưu hóa quãng đường và chi phí vận chuyển cho doanh nghiệp phát triển bằng Python."
+    desc_en: "Enterprise route and transportation cost optimization software developed in Python."
+
+  - title: "Milk World App"
+    icon: "bi-box-seam-fill"
+    badge: "Coming Soon"
+    url: ""
+    coming_soon: true
+    desc_vi: "Ứng dụng quản lý bán lẻ và phân phối chuỗi sản phẩm sữa &amp; dinh dưỡng."
+    desc_en: "Retail management and distribution application for dairy and nutrition products."
+
+  - title: "TOEIC Learning Platform"
+    icon: "bi-mortarboard-fill"
+    badge: "Coming Soon"
+    url: ""
+    coming_soon: true
+    desc_vi: "Nền tảng web luyện thi TOEIC theo từng Part, thi thử bấm giờ và theo dõi tiến độ học tập."
+    desc_en: "Web platform for part-by-part TOEIC practice, timed mock tests, and progress tracking."

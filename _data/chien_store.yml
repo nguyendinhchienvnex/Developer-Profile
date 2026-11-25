@@ -1,0 +1,157 @@
+live_url: "http://localhost:5073"
+repo_url: "https://github.com/nguyendinhchienvnex/Web-BanHang"
+
+pills:
+  - "Django 5.2.18 &amp; DRF"
+  - "React 19 &amp; TypeScript"
+  - "PostgreSQL 15+"
+  - "Zustand State"
+  - "Axios Interceptors"
+  - "JWT + Google OAuth 2.0"
+  - "MoMo QR &amp; VNPay"
+
+architecture:
+  - layer_vi: "Backend API"
+    layer_en: "Backend API"
+    stack: "Django 5.2.18, DRF, SimpleJWT"
+    desc_vi: "Kiến trúc RESTful API chia thành 6 ứng dụng nghiệp vụ độc lập, chạy mặc định tại cổng <code>8000</code>."
+    desc_en: "RESTful API modularized into 6 independent business Django apps, running by default on port <code>8000</code>."
+
+  - layer_vi: "Frontend SPA"
+    layer_en: "Frontend SPA"
+    stack: "React 19, TypeScript, Vite, Tailwind CSS"
+    desc_vi: "Ứng dụng đơn trang (SPA) gồm 14 trang chức năng, đóng gói nhanh với Vite."
+    desc_en: "Single-Page Application (SPA) comprising 14 functional views bundled with Vite."
+
+  - layer_vi: "State Management"
+    layer_en: "State Management"
+    stack: "Zustand"
+    desc_vi: "Quản lý trạng thái toàn cục gọn nhẹ cho <code>auth</code>, <code>cart</code>, <code>wishlist</code>, <code>language</code> và <code>location</code>."
+    desc_en: "Lightweight global stores for <code>auth</code>, <code>cart</code>, <code>wishlist</code>, <code>language</code>, and <code>location</code>."
+
+  - layer_vi: "HTTP Client"
+    layer_en: "HTTP Client"
+    stack: "Axios"
+    desc_vi: "Cấu hình <code>axiosClient</code> tích hợp Interceptor tự động gắn <code>Bearer Token</code> và làm mới token khi hết hạn."
+    desc_en: "Configured <code>axiosClient</code> with request/response interceptors for automatic <code>Bearer Token</code> attachment and silent refresh."
+
+  - layer_vi: "Xác thực &amp; Bảo mật"
+    layer_en: "Auth &amp; Security"
+    stack: "JWT + Google OAuth 2.0 + CORS"
+    desc_vi: "Xác thực phi trạng thái: Access Token (<code>1 giờ</code>), Refresh Token (<code>30 ngày</code>), hỗ trợ <code>django-cors-headers</code>."
+    desc_en: "Stateless authentication: Access Token (<code>1 hour</code>), Refresh Token (<code>30 days</code>), protected via <code>django-cors-headers</code>."
+
+  - layer_vi: "Cơ sở dữ liệu"
+    layer_en: "Database"
+    stack: "PostgreSQL 15+ (<code>psycopg[binary]</code>)"
+    desc_vi: "Cơ sở dữ liệu quan hệ chuẩn ACID, tối ưu truy vấn đồng thời cao, đánh chỉ mục và mở rộng quy mô Production."
+    desc_en: "ACID-compliant relational database optimized for high concurrency, indexing, and production scalability."
+
+django_apps:
+  - name: "users"
+    desc_vi: "Đăng ký, đăng nhập truyền thống, Google OAuth 2.0, quản lý hồ sơ và sổ địa chỉ"
+    desc_en: "Registration, JWT login, Google OAuth 2.0, user profiles, and address book"
+    models: "<code>User</code> (<code>ADMIN</code> / <code>SELLER</code> / <code>CUSTOMER</code>), <code>Address</code>"
+
+  - name: "catalog"
+    desc_vi: "Quản lý danh mục, thương hiệu, sản phẩm, biến thể và danh sách yêu thích"
+    desc_en: "Categories, brands, products, product variants, and wishlists"
+    models: "<code>Category</code>, <code>Brand</code>, <code>Product</code>, <code>ProductVariant</code>, <code>Wishlist</code>"
+
+  - name: "cart"
+    desc_vi: "Quản lý giỏ hàng, thêm/sửa/xóa sản phẩm và đồng bộ từ <code>localStorage</code>"
+    desc_en: "Cart operations and guest-to-user synchronization from <code>localStorage</code>"
+    models: "<code>Cart</code>, <code>CartItem</code>"
+
+  - name: "orders"
+    desc_vi: "Xử lý đặt hàng (checkout), lịch sử đơn hàng, cập nhật trạng thái và thống kê doanh thu"
+    desc_en: "Checkout workflows, order history, status lifecycle, and revenue analytics"
+    models: "<code>Order</code>, <code>OrderItem</code>"
+
+  - name: "payments"
+    desc_vi: "Khởi tạo và xác thực giao dịch thanh toán COD, MoMo QR, VNPay"
+    desc_en: "Transaction initialization and verification for COD, MoMo QR, and VNPay"
+    models: "<code>Payment</code>"
+
+  - name: "inventory"
+    desc_vi: "Quản lý kho bãi, điều chỉnh tồn kho và ghi nhận biến động nhập/xuất"
+    desc_en: "Warehouse management, stock adjustments, and inbound/outbound movement logs"
+    models: "<code>Warehouse</code>, <code>StockMovement</code>"
+
+roles:
+  - icon: "bi-person-heart"
+    title_vi: "Khách hàng (<code>CUSTOMER</code>)"
+    title_en: "Customer Experience (<code>CUSTOMER</code>)"
+    features:
+      - vi: "<strong>Xác thực &amp; Tài khoản:</strong> Đăng ký, đăng nhập nội bộ hoặc một chạm qua <strong>Google OAuth 2.0</strong>; quản lý nhiều địa chỉ nhận hàng."
+        en: "<strong>Auth &amp; Profile:</strong> Standard registration/login or one-tap <strong>Google OAuth 2.0</strong>; multi-address shipping management."
+      - vi: "<strong>Khám phá Sản phẩm:</strong> Lọc theo thương hiệu, mức giá, tìm kiếm từ khóa, sắp xếp và chọn biến thể (<code>ProductVariant</code>)."
+        en: "<strong>Product Discovery:</strong> Filter by brand/price, keyword search, sorting, and granular variant selection (<code>ProductVariant</code>)."
+      - vi: "<strong>Giỏ hàng Đồng bộ Thông minh:</strong> Lưu cục bộ trên <code>localStorage</code> khi chưa đăng nhập và tự động hợp nhất (<code>merge</code>) lên PostgreSQL sau khi đăng nhập."
+        en: "<strong>Smart Cart Sync:</strong> Persists guest items in <code>localStorage</code> and automatically merges into PostgreSQL upon login."
+      - vi: "<strong>Thanh toán Đa kênh &amp; Wishlist:</strong> Hỗ trợ <strong>COD</strong>, quét mã <strong>MoMo QR</strong>, cổng <strong>VNPay</strong>, lưu danh sách yêu thích và theo dõi tiến độ đơn hàng."
+        en: "<strong>Multi-Channel Checkout &amp; Wishlist:</strong> Supports <strong>COD</strong>, <strong>MoMo QR</strong>, <strong>VNPay</strong>, wishlists, and real-time order tracking."
+
+  - icon: "bi-shop"
+    title_vi: "Người bán (<code>SELLER</code>) &amp; Quản trị (<code>ADMIN</code>)"
+    title_en: "Seller Operations (<code>SELLER</code>) &amp; Admin (<code>ADMIN</code>)"
+    features:
+      - vi: "<strong>Bảng điều khiển Người bán (<code>SellerDashboard</code>):</strong> Quản lý danh mục sản phẩm đăng bán, tạo mới và cập nhật giá/biến thể."
+        en: "<strong>Seller Dashboard (<code>SellerDashboard</code>):</strong> Manage product listings, create items, and update pricing/variants."
+      - vi: "<strong>Vận hành Đơn hàng &amp; Doanh thu:</strong> Tiếp nhận đơn hàng, cập nhật trạng thái giao vận và theo dõi thống kê doanh thu trực quan."
+        en: "<strong>Order Fulfillment &amp; Revenue:</strong> Process incoming orders, update shipping statuses, and monitor revenue metrics."
+      - vi: "<strong>Quản trị Kho vận (<code>Inventory</code>):</strong> Quản lý nhiều kho hàng (<code>Warehouse</code>), điều chỉnh tồn kho và giám sát nhật ký nhập/xuất (<code>StockMovement</code>)."
+        en: "<strong>Inventory Control (<code>Inventory</code>):</strong> Multi-warehouse tracking (<code>Warehouse</code>), stock adjustments, and audit trails (<code>StockMovement</code>)."
+      - vi: "<strong>Kiểm soát Hệ thống (<code>ADMIN</code>):</strong> Phân quyền vai trò (<code>ADMIN</code>, <code>SELLER</code>, <code>CUSTOMER</code>), kiểm duyệt danh mục gốc và thương hiệu qua Django Admin."
+        en: "<strong>System Administration (<code>ADMIN</code>):</strong> Role assignment (<code>ADMIN</code>, <code>SELLER</code>, <code>CUSTOMER</code>) and global catalog moderation via Django Admin."
+
+apis:
+  - module: "users"
+    methods:
+      - type: "post"
+        label: "POST"
+    endpoint: "<code>/api/v1/auth/login/</code> · <code>/google/callback/</code>"
+    desc_vi: "Đăng nhập JWT (Access 1h / Refresh 30d) &amp; Google OAuth 2.0"
+    desc_en: "JWT login (1h access / 30d refresh) &amp; Google OAuth 2.0 callback"
+
+  - module: "catalog"
+    methods:
+      - type: "get"
+        label: "GET"
+    endpoint: "<code>/api/v1/catalog/products/</code> · <code>/{slug}/</code>"
+    desc_vi: "Danh sách sản phẩm (lọc, tìm kiếm, sắp xếp) &amp; chi tiết biến thể"
+    desc_en: "Filtered product listing &amp; detailed variant lookup by slug"
+
+  - module: "cart"
+    methods:
+      - type: "post"
+        label: "POST"
+    endpoint: "<code>/api/v1/cart/add/</code> · <code>/cart/merge/</code>"
+    desc_vi: "Thêm sản phẩm &amp; hợp nhất giỏ hàng từ <code>localStorage</code> lên server"
+    desc_en: "Add items &amp; merge guest <code>localStorage</code> cart to server"
+
+  - module: "orders"
+    methods:
+      - type: "post"
+        label: "POST"
+      - type: "get"
+        label: "GET"
+    endpoint: "<code>/api/v1/orders/checkout/</code> · <code>/orders/</code>"
+    desc_vi: "Tạo đơn hàng từ giỏ hàng và truy xuất lịch sử đơn hàng"
+    desc_en: "Create order from cart checkout &amp; retrieve order history"
+
+  - module: "payments"
+    methods:
+      - type: "post"
+        label: "POST"
+    endpoint: "<code>/api/v1/payments/create/</code>"
+    desc_vi: "Khởi tạo giao dịch thanh toán đa kênh (COD, MoMo QR, VNPay)"
+    desc_en: "Initialize multi-channel payment transactions (COD, MoMo QR, VNPay)"
+
+  - module: "inventory"
+    methods:
+      - type: "post"
+        label: "POST"
+    endpoint: "<code>/api/v1/inventory/adjust/</code>"
+    desc_vi: "Điều chỉnh tồn kho trực tiếp và ghi log <code>StockMovement</code> (Seller/Admin)"
+    desc_en: "Adjust stock quantities &amp; log <code>StockMovement</code> (Seller/Admin)"
