@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Books"
+title_vi: "Sách"
 ---
 
 <style>

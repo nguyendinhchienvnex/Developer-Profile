@@ -2,6 +2,7 @@
 layout: default
 title: "Store Image"
 permalink: /storeImage/
+title_vi: "Ảnh lưu trữ"
 ---
 
 <style>

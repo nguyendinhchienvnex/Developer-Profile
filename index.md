@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Home"
+title_vi: "Trang chủ"
 ---
 
 <style>

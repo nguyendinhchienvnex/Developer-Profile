@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Blog"
+title_vi: "Bài viết"
 ---
 
 <style>

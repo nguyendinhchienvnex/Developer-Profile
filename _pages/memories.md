@@ -2,6 +2,7 @@
 layout: default
 title: "Memories"
 permalink: /memories/
+title_vi: "Kỉ niệm"
 ---
 
 <style>

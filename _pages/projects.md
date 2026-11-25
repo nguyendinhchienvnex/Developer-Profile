@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Projects"
+title_vi: "Dự án"
 ---
 
 <style>

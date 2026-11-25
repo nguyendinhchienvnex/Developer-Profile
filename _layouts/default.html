@@ -2,7 +2,13 @@
 <html lang="vi" data-lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }} | {{ site.title }}</title>
+  <title
+  id="page-title"
+  data-en="{{ page.title }} | {{ site.title }}"
+  data-vi="{{ page.title_vi | default: page.title }} | {{ site.title }}"
+  >
+  {{ page.title }} | {{ site.title }}
+  </title>
   <meta name="description" content="{{ site.description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -789,7 +795,12 @@
           const optLang = opt.getAttribute('data-set-lang');
           opt.classList.toggle('is-selected', optLang === validLang);
         });
-      }
+        const titleEl = document.getElementById("page-title");
+        if (titleEl) {
+          document.title = lang === "vi"
+            ? titleEl.getAttribute("data-vi")
+            : titleEl.getAttribute("data-en");
+        }
 
       // Khởi tạo ngôn ngữ khi tải trang
       const savedLang = document.documentElement.getAttribute('data-lang') || 'vi';
