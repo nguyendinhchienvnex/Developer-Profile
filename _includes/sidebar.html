@@ -1,0 +1,50 @@
+{% assign profile = site.data.profile %}
+
+<aside class="sidebar-card">
+  <div class="sidebar-inner">
+    <div class="sidebar-title">
+      <span class="lang-vi">GIỚI THIỆU</span>
+      <span class="lang-en">ABOUT ME</span>
+    </div>
+
+    <div class="sidebar-avatar">
+      <img
+        src="{{ site.baseurl }}{{ profile.avatar }}"
+        alt="Ảnh {{ profile.name_vi }}"
+        class="sidebar-avatar-img"
+      />
+    </div>
+
+    <div class="sidebar-name lang-vi">{{ profile.name_vi }}</div>
+    <div class="sidebar-name lang-en">{{ profile.name_en }}</div>
+
+    <div class="sidebar-role">
+      <span class="lang-vi">{{ profile.role_vi }}</span>
+      <span class="lang-en">{{ profile.role_en }}</span>
+    </div>
+
+    <div class="sidebar-meta">
+      <span class="lang-vi">{{ profile.bio_vi }}</span>
+      <span class="lang-en">{{ profile.bio_en }}</span>
+    </div>
+
+    <div class="sidebar-links">
+      <span class="text-muted-soft">
+        <span class="lang-vi">Liên hệ nhanh:</span>
+        <span class="lang-en">Quick links:</span>
+      </span>
+      <a href="{{ profile.gmail_compose_url }}" target="_blank" rel="noopener noreferrer">
+        <span class="lang-vi">Email cá nhân</span>
+        <span class="lang-en">Personal Email</span>
+      </a>
+      <a href="{{ site.baseurl }}/cv">
+        <span class="lang-vi">Xem CV</span>
+        <span class="lang-en">View CV</span>
+      </a>
+      <a href="{{ site.baseurl }}/projects">
+        <span class="lang-vi">Dự án nổi bật</span>
+        <span class="lang-en">Featured Projects</span>
+      </a>
+    </div>
+  </div>
+</aside>

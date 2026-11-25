@@ -1,14 +1,47 @@
+# ==========================================
+# 1. THÔNG TIN CƠ BẢN & SEO
+# ==========================================
 title: "Nguyen Dinh Chien"
 description: "Full-Stack Software Engineering"
 author: "Nguyen Dinh Chien"
 
+# ==========================================
+# 2. ĐƯỜNG DẪN GITHUB PAGES
+# ==========================================
 url: "https://nguyendinhchienvnex.github.io"
 baseurl: "/Developer-Profile"
 
+# ==========================================
+# 3. ĐĂNG KÝ THƯ MỤC _pages/
+# ==========================================
 collections:
   pages:
     output: true
     permalink: /:name/
 
+# ==========================================
+# 4. CẤU HÌNH MẶC ĐỊNH THEO THƯ MỤC
+# ==========================================
+defaults:
+  - scope:
+      path: "_pages"
+      type: "pages"
+    values:
+      layout: "default"
+
+  - scope:
+      path: "_pages/projects"
+      type: "pages"
+    values:
+      layout: "default"
+      permalink: /projects/:name/
+      custom_css: "project-detail"
+
+# ==========================================
+# 5. MÚI GIỜ, MARKDOWN
+# ==========================================
 timezone: Asia/Ho_Chi_Minh
 markdown: kramdown
+
+exclude:
+  - README.md

@@ -1,0 +1,34 @@
+- title_vi: "Trang chủ"
+  title_en: "Home"
+  url: "/"
+  match_type: "exact"
+
+- title_vi: "Dự án"
+  title_en: "Projects"
+  url: "/projects"
+  match_type: "contains"
+  match_paths: ["/projects"]
+
+- title_vi: "Bài viết"
+  title_en: "Blog"
+  url: "/blog"
+  match_type: "contains"
+  match_paths: ["/blog"]
+
+- title_vi: "Sách"
+  title_en: "Books"
+  url: "/books"
+  match_type: "contains"
+  match_paths: ["/books"]
+
+- title_vi: "Kỉ niệm"
+  title_en: "Memories"
+  url: "/memories"
+  match_type: "contains"
+  match_paths: ["/memories", "/storeImage"]
+
+- title_vi: "CV"
+  title_en: "CV"
+  url: "/cv"
+  match_type: "contains"
+  match_paths: ["/cv"]
