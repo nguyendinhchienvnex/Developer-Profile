@@ -97,7 +97,7 @@ Portfolio-Repository/
 | `_pages/projects.md` | `/projects/`          | **Dự án:** Trình bày chi tiết các sản phẩm phần mềm đã xây dựng, kiến trúc công nghệ và liên kết mã nguồn GitHub.           |
 | `_pages/blog.md`     | `/blog/`              | **Blog Kỹ thuật:** Nơi ghi chép kiến thức lập trình, quản trị hệ thống, Linux, Docker và kinh nghiệm giải quyết vấn đề.     |
 | `_pages/books.md`    | `/books/`             | **Tủ sách:** Tổng hợp và tóm tắt những cuốn sách hay về tư duy kỹ thuật, kiến trúc phần mềm và phát triển bản thân.         |
-| `_pages/memories.md` | `/memories/`          | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập _(hiện đang trống, sẽ cập nhật sau)_.          |
+| `_pages/memories.md` | `/memories/`          | **Kỷ niệm:** Không gian lưu giữ các cột mốc đáng nhớ trong quá trình học tập.                                               |
 
 ## 6. Cài đặt & Chạy
 
